@@ -83,6 +83,11 @@ body::before {
   z-index: 1;
 }
 
+/* Первая секция под hero — меньший верхний отступ, чтобы блоки визуально ближе */
+.main > .section:first-of-type {
+  padding-top: clamp(22px, 4.8vw, 46px);
+}
+
 .section.is-temporarily-hidden[hidden],
 .is-temporarily-hidden[hidden] {
   display: none !important;
@@ -118,7 +123,7 @@ strong {
 .hero {
   padding-top: max(16px, env(safe-area-inset-top, 0px));
   padding-right: max(var(--layout-gutter), env(safe-area-inset-right, 0px));
-  padding-bottom: 72px;
+  padding-bottom: clamp(44px, 6vw, 64px);
   padding-left: max(var(--layout-gutter), env(safe-area-inset-left, 0px));
   background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg) 55%);
   border-bottom: 1px solid var(--border);
@@ -269,6 +274,10 @@ strong {
   line-height: 1.48;
 }
 
+.hero-copy .hero-value {
+  margin-bottom: 10px;
+}
+
 .subtitle {
   margin: 0 0 var(--space-md);
   max-width: min(62rem, 100%);
@@ -277,13 +286,17 @@ strong {
   font-weight: 500;
 }
 
+.hero-copy .subtitle {
+  margin-bottom: 12px;
+}
+
 .hero-cta {
   display: grid;
   grid-template-columns: repeat(2, minmax(180px, 260px));
-  gap: 10px 12px;
+  gap: 8px 12px;
   max-width: none;
   width: 100%;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .hero-cta .btn {
@@ -346,7 +359,7 @@ strong {
   list-style: none;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 8px;
+  gap: 6px;
   max-width: min(62rem, 100%);
   width: 100%;
 }
