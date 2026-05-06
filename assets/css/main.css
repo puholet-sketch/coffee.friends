@@ -341,36 +341,15 @@ strong {
   color: var(--accent-gold);
 }
 
-.hero-bullets {
+/* Блок «почему мы» — как график работы: surface-card + строки таблицы */
+.hero-bullets-strip {
   margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 6px;
   max-width: min(62rem, 100%);
   width: 100%;
 }
 
-.hero-bullets li {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  padding: 10px 14px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  text-align: center;
-}
-
-@media (min-width: 520px) {
-  .hero-bullets {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .hero-bullets li:first-child {
-    grid-column: 1 / -1;
-  }
+.hero-bullets-table td {
+  text-align: left;
 }
 
 .hero-visual {
