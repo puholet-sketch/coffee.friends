@@ -115,9 +115,9 @@ strong {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   max-width: 1120px;
-  margin: 0 auto 44px;
+  margin: 0 auto 28px;
   flex-wrap: wrap;
 }
 
@@ -128,7 +128,7 @@ strong {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: 40px;
   max-width: 100%;
 }
 
@@ -154,20 +154,20 @@ strong {
 .nav-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 18px;
+  gap: 2px 10px;
 }
 
 .nav-links a {
   text-decoration: none;
   color: var(--text-muted);
   font-weight: 600;
-  font-size: 0.8125rem;
-  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
-  padding: 6px 4px;
+  min-height: 36px;
+  padding: 2px 2px;
 }
 
 .nav-links a:hover {
@@ -1337,12 +1337,12 @@ strong {
   .nav {
     flex-direction: column;
     align-items: flex-start;
-    row-gap: 10px;
+    row-gap: 6px;
   }
 
   .nav-links {
-    row-gap: 4px;
-    column-gap: 14px;
+    row-gap: 0;
+    column-gap: 10px;
   }
 
   .stories-list,
