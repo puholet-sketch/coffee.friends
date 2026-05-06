@@ -1281,6 +1281,13 @@ strong {
   padding-top: clamp(22px, 4vw, 36px);
 }
 
+.section-stories .lead--muted {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.52;
+  color: var(--text-muted);
+}
+
 .feedback-layout {
   display: grid;
   grid-template-columns: 1fr minmax(220px, 300px);
