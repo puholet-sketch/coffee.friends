@@ -272,18 +272,33 @@ strong {
 }
 
 .subtitle {
-  margin: 0 0 26px;
-  max-width: 38rem;
+  margin: 0 0 22px;
+  max-width: min(38rem, 100%);
   color: var(--text-muted);
   font-size: clamp(0.9375rem, 1.35vw, 1.0625rem);
   font-weight: 500;
 }
 
 .hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+  max-width: 22rem;
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.hero-cta .btn {
+  width: 100%;
+  min-width: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (max-width: 440px) {
+  .hero-cta {
+    grid-template-columns: 1fr;
+  }
 }
 
 .btn {
@@ -335,19 +350,32 @@ strong {
   margin: 0;
   padding: 0;
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 12px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  max-width: 22rem;
+  width: 100%;
 }
 
 .hero-bullets li {
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--text-muted);
-  padding: 8px 14px;
+  padding: 10px 14px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 999px;
+  text-align: center;
+}
+
+@media (min-width: 520px) {
+  .hero-bullets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-bullets li:first-child {
+    grid-column: 1 / -1;
+  }
 }
 
 .hero-visual {
@@ -364,8 +392,9 @@ strong {
 
 .hero-card {
   background: var(--surface);
-  padding: 22px 20px;
-  max-width: 280px;
+  padding: 18px 16px 16px;
+  max-width: 300px;
+  width: 100%;
 }
 
 .hero-card-label {
@@ -376,8 +405,48 @@ strong {
   color: var(--gold);
 }
 
-.type-pullquote,
-.hero-card-quote {
+.hero-mood-intro {
+  margin: 10px 0 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.hero-mood-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero-mood-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.hero-mood-ic {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(201, 176, 103, 0.88);
+}
+
+.hero-mood-ic svg {
+  display: block;
+}
+
+.type-pullquote {
   margin: 10px 0 0;
   font-family: var(--font-sans);
   font-style: normal;
@@ -1227,6 +1296,10 @@ strong {
 
   .hero-visual {
     justify-content: flex-start;
+  }
+
+  .hero-card {
+    max-width: min(22rem, 100%);
   }
 
   .stories-list,
