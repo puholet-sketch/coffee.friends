@@ -1255,9 +1255,19 @@ strong {
   padding: 22px;
 }
 
+.story-card h3 {
+  margin: 0 0 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.52;
+  color: var(--text-muted);
+}
+
 .story-card p {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.52;
   color: var(--text-muted);
 }
 
