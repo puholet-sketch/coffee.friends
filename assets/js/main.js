@@ -255,11 +255,11 @@ function initCoffeeCalendarTooltips(itemsByDate) {
 
   function positionDocked() {
     tip.classList.add("cal-tooltip--dock");
-    tip.style.left = "12px";
-    tip.style.right = "12px";
-    tip.style.top = "auto";
-    tip.style.bottom = "max(16px, env(safe-area-inset-bottom, 0px))";
-    tip.style.width = "auto";
+    tip.style.left = "";
+    tip.style.right = "";
+    tip.style.top = "";
+    tip.style.bottom = "";
+    tip.style.width = "";
     tip.classList.add("cal-tooltip--interactive");
   }
 
