@@ -564,7 +564,79 @@ async function loadGalleryManifest() {
   renderGalleryPhotos(photos);
 }
 
+function initJokesPager() {
+  const grid = document.querySelector(".jokes-grid");
+  const prevBtn = document.getElementById("jokesPrevBtn");
+  const nextBtn = document.getElementById("jokesNextBtn");
+  if (!grid || !nextBtn || !prevBtn) return;
+
+  // Все шутки должны иметь категорию-бейдж в едином формате.
+  Array.from(grid.querySelectorAll(".joke-card")).forEach((card) => {
+    const p = card.querySelector("p");
+    if (!p) return;
+    if (p.querySelector(".joke-card__label")) return;
+    const label = document.createElement("span");
+    label.className = "joke-card__label";
+    label.textContent = card.classList.contains("joke-card--so") ? "Со стойки" : "Из офиса";
+    p.prepend(label);
+  });
+
+  const allCards = Array.from(grid.querySelectorAll(".joke-card"));
+  if (allCards.length === 0) return;
+
+  const fromCounter = allCards.filter((card) => card.classList.contains("joke-card--so"));
+  const regular = allCards.filter((card) => !card.classList.contains("joke-card--so"));
+  const pageSize = 3;
+  const pageCount = Math.max(
+    1,
+    Math.ceil(regular.length / pageSize),
+    Math.ceil(fromCounter.length / pageSize)
+  );
+
+  if (pageCount <= 1) {
+    prevBtn.hidden = true;
+    nextBtn.hidden = true;
+  }
+
+  let page = 0;
+
+  function sliceFor(arr) {
+    if (arr.length === 0) return [];
+    const start = (page * pageSize) % arr.length;
+    return arr.slice(start, start + pageSize);
+  }
+
+  function renderPage() {
+    const regularSlice = new Set(sliceFor(regular));
+    const soSlice = new Set(sliceFor(fromCounter));
+
+    allCards.forEach((card) => {
+      const visible = card.classList.contains("joke-card--so")
+        ? soSlice.has(card)
+        : regularSlice.has(card);
+      card.classList.toggle("is-hidden", !visible);
+    });
+
+    const pageLabel = `Порция шуток ${page + 1} из ${pageCount}`;
+    nextBtn.setAttribute("aria-label", `Следующая, ${pageLabel}`);
+    prevBtn.setAttribute("aria-label", `Предыдущая, ${pageLabel}`);
+  }
+
+  prevBtn.addEventListener("click", () => {
+    page = (page - 1 + pageCount) % pageCount;
+    renderPage();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    page = (page + 1) % pageCount;
+    renderPage();
+  });
+
+  renderPage();
+}
+
 renderDrinks();
 renderCategories();
 loadGalleryManifest();
 loadCoffeeCalendar();
+initJokesPager();

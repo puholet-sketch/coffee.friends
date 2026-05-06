@@ -22,15 +22,11 @@
       </a>
       <div class="nav-links">
         <a href="#hours">График</a>
-        <a href="#route">Как дойти</a>
-        <a href="#drinks">Напитки</a>
-        <a href="#more">Ещё в меню</a>
+        <a href="#route">Маршрут</a>
+        <a href="#drinks">Меню</a>
+        <a href="#more">Ассортимент</a>
         <a href="#gallery">Фото</a>
-        <a href="#feedback">Связь</a>
-        <a href="#stories">О нас</a>
-        <a href="#coffee-calendar">Календарь</a>
-        <a href="#jokes">Шутки</a>
-        <a href="#contacts">Контакты</a>
+        <a href="#feedback">Написать</a>
       </div>
     </nav>
 
@@ -51,38 +47,6 @@
           <li>Классика, раф, матча</li>
           <li>Навынос и у стойки</li>
         </ul>
-      </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="hero-card neon-frame">
-          <span class="hero-card-label">Кофе объединяет</span>
-          <p class="hero-mood-intro">Кто ты сегодня:</p>
-          <ul class="hero-mood-list">
-            <li>
-              <span class="hero-mood-ic" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round" d="M8 20h8l-1.2-14H9.2L8 20z"/><path fill="none" stroke="currentColor" stroke-width="1.1" d="M9 8h6"/></svg>
-              </span>
-              <span>латте</span>
-            </li>
-            <li>
-              <span class="hero-mood-ic" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" d="M8 18h8l-1-11H9L8 18z"/><path fill="none" stroke="currentColor" stroke-width="1.2" d="M7 6h10"/><path fill="none" stroke="currentColor" stroke-width="1.1" d="M9 4.5h6v2H9z"/></svg>
-              </span>
-              <span>капуч</span>
-            </li>
-            <li>
-              <span class="hero-mood-ic" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.2" d="M8 19h8l-1-13H9L8 19z"/><path fill="none" stroke="currentColor" stroke-width="1" d="M9 9h6M9 12h6M9 15h6"/></svg>
-              </span>
-              <span>раф</span>
-            </li>
-            <li>
-              <span class="hero-mood-ic" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="18" height="18" focusable="false" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M12 3v18"/><path d="M5 7l14 10"/><path d="M19 7L5 17"/><path d="M5 17l14-10"/><path d="M19 17L5 7"/></g></svg>
-              </span>
-              <span>а может просто снегом стать?</span>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   </header>
@@ -134,29 +98,6 @@
             alt="Как пройти к кофейне CoffeeFriends: лифт на этажи 2 и 11, неоновая вывеска КОФЕ"
           >
         </figure>
-        <div class="route-panel surface-card" aria-label="Три шага: лифт, вывеска, заказ">
-          <div class="route-step">
-            <span class="step-num" aria-hidden="true">1</span>
-            <div class="route-step__body">
-              <h3>Лифт</h3>
-              <p>Выберите <strong>2</strong> или <strong>11 этаж</strong>.</p>
-            </div>
-          </div>
-          <div class="route-step">
-            <span class="step-num" aria-hidden="true">2</span>
-            <div class="route-step__body">
-              <h3>Неон</h3>
-              <p>К вывеске <strong>«КОФЕ»</strong> — по огонькам из коридора.</p>
-            </div>
-          </div>
-          <div class="route-step">
-            <span class="step-num" aria-hidden="true">3</span>
-            <div class="route-step__body">
-              <h3>Заказ</h3>
-              <p>Скажите, что хотите — или доверьтесь бариста.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -184,8 +125,8 @@
 
     <section class="section section-more" id="more">
       <div class="section-head">
-        <p class="eyebrow">Ещё</p>
-        <h2>Остальной ассортимент</h2>
+        <p class="eyebrow">Ассортимент</p>
+        <h2>Не только кофе</h2>
         <p class="lead">Категории и вилки цен — полный перечень в точке и у бариста.</p>
       </div>
       <div class="chart-wrap neon-frame">
@@ -207,7 +148,6 @@
     <section class="section section-gallery" id="gallery">
       <div class="section-head">
         <p class="eyebrow">Атмосфера</p>
-        <h2>Фото точек</h2>
       </div>
       <div id="galleryFloorRoot" class="gallery-floors" aria-live="polite"></div>
     </section>
@@ -260,7 +200,7 @@
       </div>
     </section>
 
-    <section class="section section-calendar" id="coffee-calendar" aria-labelledby="coffee-calendar-title">
+    <section class="section section-calendar is-temporarily-hidden" id="coffee-calendar" aria-labelledby="coffee-calendar-title" hidden>
       <div class="section-head">
         <p class="eyebrow">Только про кофе</p>
         <h2 id="coffee-calendar-title">Сыграем в игру?</h2>
@@ -286,6 +226,14 @@
         <p class="eyebrow">Юмор</p>
         <h2>Шуточки про кофе</h2>
         <p class="lead">Про офис, встречи и кофе-брейки — и пару слов со стойки.</p>
+      </div>
+      <div class="jokes-controls" aria-live="polite">
+        <button type="button" class="jokes-next" id="jokesPrevBtn" aria-label="Показать предыдущую порцию шуток">
+          <span aria-hidden="true">←</span>
+        </button>
+        <button type="button" class="jokes-next" id="jokesNextBtn" aria-label="Показать следующую порцию шуток">
+          <span aria-hidden="true">→</span>
+        </button>
       </div>
       <div class="jokes-grid">
         <article class="surface-card joke-card">
