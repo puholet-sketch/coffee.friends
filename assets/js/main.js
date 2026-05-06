@@ -530,7 +530,7 @@ function renderGalleryPhotos(photos) {
   </div>`;
 
   if (other.length > 0) {
-    html += `<div class="gallery-other surface-card">
+    html += `<div class="gallery-other">
       <p class="gallery-other-title">Без метки этажа в имени</p>
       <p class="gallery-other-hint">Переименуйте в 2-… или 11-… (или укажите поле \"floor\": 2 в manifest.json)</p>
       <div class="gallery-masonry gallery-masonry--compact">${other.map(tile).join("")}</div>

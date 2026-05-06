@@ -232,25 +232,13 @@ strong {
   color: var(--text);
 }
 
-.type-display-sub,
-.route-step h3,
-.story-card h3,
-.feedback-aside h3 {
+.type-display-sub {
   font-family: var(--font-sans);
   font-weight: 800;
+  font-size: var(--text-card-title);
   line-height: 1.18;
   letter-spacing: -0.02em;
   color: var(--text);
-}
-
-.story-card h3 {
-  margin: 0 0 10px;
-  font-size: var(--text-card-title);
-}
-
-.feedback-aside h3 {
-  margin: 0 0 12px;
-  font-size: var(--text-card-title);
 }
 
 .text-accent-pink,
@@ -838,11 +826,11 @@ strong {
 }
 
 .gallery-floor-col {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: clamp(14px, 1.4vw, 22px);
-  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.35);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
 }
 
 .gallery-floor-head {
@@ -883,8 +871,8 @@ strong {
   margin: 0;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid var(--border);
-  background: #05060a;
+  border: none;
+  background: transparent;
   aspect-ratio: 4 / 3;
 }
 
@@ -904,7 +892,10 @@ strong {
 
 .gallery-other {
   margin-top: 18px;
-  padding: 18px 20px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .gallery-other-title {
@@ -1264,7 +1255,8 @@ strong {
   padding: 22px;
 }
 
-.story-card h3 {
+.story-card h3,
+.feedback-aside h3 {
   margin: 0 0 10px;
   font-size: 0.9375rem;
   font-weight: 600;
@@ -1301,8 +1293,8 @@ strong {
   display: grid;
   grid-template-columns: 1fr minmax(220px, 300px);
   gap: 28px 36px;
-  padding: 32px 28px 36px;
-  background: linear-gradient(165deg, rgba(26, 26, 30, 0.96), rgba(10, 10, 12, 0.98));
+  padding: 0;
+  background: transparent;
 }
 
 .feedback-copy .lead {
@@ -1311,27 +1303,29 @@ strong {
 
 .feedback-note {
   margin: 14px 0 0;
-  font-size: 0.8125rem;
-  color: var(--text-dim);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.52;
+  color: var(--text-muted);
 }
 
-.feedback-channel-btn {
-  font-size: 0.8125rem;
-  padding: 10px var(--space-md);
+.section-feedback .feedback-mail-btn {
+  align-self: start;
+  letter-spacing: 0.03em;
+  text-transform: none;
 }
 
 .feedback-aside {
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
+  padding: 22px;
 }
 
 .feedback-aside ul {
   margin: 0;
   padding-left: 1.15rem;
-  color: var(--text-dim);
-  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.52;
 }
 
 .feedback-aside li {
@@ -1513,21 +1507,19 @@ strong {
   .feedback-layout {
     grid-template-columns: 1fr;
     gap: 16px;
-    padding: 20px 14px 18px;
+    padding: 0;
   }
 
   .feedback-aside {
-    padding: 14px;
+    padding: 22px 18px;
   }
 
-  .feedback-channel-btn {
+  .feedback-mail-btn {
     width: 100%;
     min-height: 46px;
     padding: 12px 14px;
     font-size: 0.78rem;
     line-height: 1.25;
-    letter-spacing: 0.03em;
-    text-transform: none;
     text-align: center;
     white-space: normal;
     overflow-wrap: anywhere;
