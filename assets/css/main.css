@@ -63,9 +63,9 @@ body::before {
   width: 200%;
   height: 200%;
   background:
-    radial-gradient(ellipse at 20% 40%, rgba(92, 239, 255, 0.05) 0%, transparent 45%),
-    radial-gradient(ellipse at 85% 15%, rgba(216, 91, 142, 0.06) 0%, transparent 42%),
-    radial-gradient(ellipse at 50% 90%, rgba(201, 176, 103, 0.05) 0%, transparent 48%);
+    radial-gradient(ellipse at 20% 40%, rgba(92, 239, 255, 0.04) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 15%, rgba(216, 91, 142, 0.03) 0%, transparent 42%),
+    radial-gradient(ellipse at 50% 90%, rgba(201, 176, 103, 0.04) 0%, transparent 48%);
   pointer-events: none;
   z-index: 0;
 }
@@ -125,21 +125,26 @@ strong {
 .logo {
   font-family: var(--font-sans);
   font-weight: 800;
-  font-size: 1.2rem;
-  letter-spacing: 0;
   color: var(--text);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
+  max-width: 100%;
 }
 
 .brand-mark {
   display: inline-flex;
   align-items: baseline;
+  flex-wrap: wrap;
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.1;
+}
+
+.text-brand-light {
+  color: #eceef4;
+  font-weight: 800;
 }
 
 .brand-mark--footer {
@@ -167,7 +172,7 @@ strong {
 }
 
 .nav-links a:hover {
-  color: var(--accent-cyan);
+  color: var(--accent-gold);
 }
 
 .hero-inner {
@@ -179,13 +184,19 @@ strong {
   align-items: start;
 }
 
+/* Логотип CoffeeFriends в шапке = тот же кегль/интерлиньяж, что и H1 hero */
 .type-hero,
-.hero-copy h1 {
+.hero-copy h1,
+.nav .logo .brand-mark--site {
   font-family: var(--font-sans);
   font-weight: 800;
   font-size: var(--text-hero);
   line-height: 1.14;
   letter-spacing: -0.02em;
+}
+
+.type-hero,
+.hero-copy h1 {
   margin: 0 0 18px;
   max-width: 20ch;
   color: var(--text);
@@ -227,7 +238,7 @@ strong {
 
 .feedback-aside h3 {
   margin: 0 0 12px;
-  font-size: clamp(1rem, 2.2vw, 1.125rem);
+  font-size: var(--text-card-title);
 }
 
 .text-accent-pink,
@@ -262,8 +273,8 @@ strong {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--accent-pink);
-  box-shadow: 0 0 10px rgba(216, 91, 142, 0.55);
+  background: var(--accent-gold);
+  box-shadow: 0 0 8px rgba(201, 176, 103, 0.4);
 }
 
 .subtitle {
@@ -354,10 +365,7 @@ strong {
 .neon-frame {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  box-shadow:
-    0 0 0 1px rgba(216, 91, 142, 0.14),
-    0 0 36px rgba(92, 180, 200, 0.07),
-    0 20px 50px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.38);
 }
 
 .hero-card {
@@ -390,51 +398,47 @@ strong {
 .section {
   max-width: 1120px;
   margin: 0 auto;
-  padding-top: clamp(48px, 10vw, 72px);
-  padding-bottom: 28px;
+  padding-top: clamp(40px, 7vw, 56px);
+  padding-bottom: clamp(32px, 5vw, 44px);
   padding-left: max(20px, env(safe-area-inset-left, 0px));
   padding-right: max(20px, env(safe-area-inset-right, 0px));
 }
 
+.section--tail {
+  padding-bottom: max(48px, calc(32px + env(safe-area-inset-bottom, 0px)));
+}
+
 .section-head {
-  margin-bottom: 26px;
+  margin-bottom: 22px;
+}
+
+.section-head--tight {
+  margin-bottom: 16px;
 }
 
 .eyebrow {
   margin: 0 0 8px;
   font-size: var(--text-eyebrow);
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: rgba(201, 176, 103, 0.72);
 }
 
-.section-route .eyebrow {
-  color: rgba(201, 176, 103, 0.85);
+.hours-strip {
+  padding: 20px 22px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  max-width: 36rem;
 }
 
-.section-drinks .eyebrow {
-  color: rgba(92, 180, 200, 0.9);
-}
-
-.section-more .eyebrow {
-  color: rgba(216, 91, 142, 0.9);
-}
-
-.section-gallery .eyebrow {
-  color: rgba(201, 176, 103, 0.85);
-}
-
-.section-jokes .eyebrow {
-  color: rgba(216, 91, 142, 0.88);
-}
-
-.section-calendar .eyebrow {
-  color: rgba(92, 180, 200, 0.92);
-}
-
-.section-feedback .feedback-copy > .eyebrow {
-  color: rgba(92, 180, 200, 0.9);
+.hours-strip__text {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--text-muted);
 }
 
 .lead {
@@ -492,9 +496,9 @@ strong {
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: linear-gradient(135deg, rgba(216, 91, 142, 0.22), rgba(92, 180, 200, 0.12));
-  border: 1px solid var(--border);
-  color: var(--neon-cyan);
+  background: rgba(201, 176, 103, 0.12);
+  border: 1px solid rgba(201, 176, 103, 0.28);
+  color: var(--accent-gold);
   font-weight: 800;
   font-size: 0.875rem;
   margin-bottom: 10px;
@@ -661,12 +665,10 @@ strong {
 
 .floor-badge.floor-2 {
   color: var(--accent-cyan);
-  box-shadow: 0 0 18px rgba(92, 180, 200, 0.12);
 }
 
 .floor-badge.floor-11 {
-  color: var(--accent-pink);
-  box-shadow: 0 0 20px rgba(216, 91, 142, 0.12);
+  color: var(--accent-gold);
 }
 
 .gallery-masonry {
@@ -740,6 +742,7 @@ strong {
   font-size: 0.9375rem;
   font-weight: 600;
   line-height: 1.52;
+  color: var(--text-muted);
 }
 
 .joke-card__label {
@@ -749,79 +752,24 @@ strong {
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  color: rgba(201, 176, 103, 0.75);
 }
 
-.joke-card--gold {
-  border-color: rgba(201, 176, 103, 0.42);
-  background: linear-gradient(158deg, rgba(201, 176, 103, 0.16), rgba(22, 24, 30, 0.96));
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
-}
-
-.joke-card--gold p {
-  color: #efe6cc;
-}
-
-.joke-card--gold .joke-card__label {
-  color: var(--accent-gold);
-}
-
-.joke-card--pink {
-  border-color: rgba(216, 91, 142, 0.42);
-  background: linear-gradient(158deg, rgba(216, 91, 142, 0.14), rgba(22, 24, 30, 0.96));
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
-}
-
-.joke-card--pink p {
-  color: #f8dfe9;
-}
-
-.joke-card--pink .joke-card__label {
-  color: var(--accent-pink);
-}
-
-.joke-card--cyan {
-  border-color: rgba(92, 180, 200, 0.42);
-  background: linear-gradient(158deg, rgba(92, 180, 200, 0.14), rgba(22, 24, 30, 0.96));
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
-}
-
-.joke-card--cyan p {
-  color: #dff4f8;
-}
-
-.joke-card--cyan .joke-card__label {
-  color: var(--accent-cyan);
-}
-
-.joke-card--violet {
-  border-color: rgba(178, 156, 235, 0.45);
-  background: linear-gradient(158deg, rgba(178, 156, 235, 0.13), rgba(22, 24, 30, 0.96));
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
-}
-
-.joke-card--violet p {
-  color: #ebe6ff;
-}
-
-.joke-card--violet .joke-card__label {
-  color: #c4b5f5;
-}
-
-.joke-card--barista {
+.joke-card--so {
   position: relative;
-  padding-left: 24px;
+  padding-left: 22px;
 }
 
-.joke-card--barista::before {
+.joke-card--so::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 12px;
-  bottom: 12px;
+  top: 14px;
+  bottom: 14px;
   width: 3px;
   border-radius: 0 3px 3px 0;
-  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-pink));
-  opacity: 0.85;
+  background: var(--accent-gold);
+  opacity: 0.55;
 }
 
 /* Coffee calendar (мес. сетки) */
@@ -839,16 +787,16 @@ strong {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent-pink);
-  box-shadow: 0 0 10px rgba(216, 91, 142, 0.65);
+  background: var(--accent-gold);
+  box-shadow: 0 0 8px rgba(201, 176, 103, 0.45);
 }
 
 .calendar-status:not(.visually-hidden) {
   margin: 12px 0 0;
   padding: 12px 16px;
   border-radius: var(--radius);
-  border: 1px solid rgba(216, 91, 142, 0.35);
-  background: rgba(216, 91, 142, 0.08);
+  border: 1px solid rgba(201, 176, 103, 0.28);
+  background: rgba(201, 176, 103, 0.06);
   color: var(--text-muted);
   font-size: 0.875rem;
 }
@@ -940,15 +888,14 @@ strong {
 }
 
 .cal-day--fact.cal-day--weekend {
-  background: linear-gradient(165deg, rgba(92, 180, 200, 0.12), rgba(26, 29, 36, 0.65));
-  border-color: rgba(92, 180, 200, 0.28);
+  opacity: 0.94;
 }
 
 .cal-day--fact:hover,
 .cal-day--fact:focus-visible {
   outline: none;
-  border-color: rgba(216, 91, 142, 0.55);
-  box-shadow: 0 0 0 2px rgba(216, 91, 142, 0.2);
+  border-color: rgba(201, 176, 103, 0.55);
+  box-shadow: 0 0 0 2px rgba(201, 176, 103, 0.12);
   color: #fff;
 }
 
@@ -962,8 +909,8 @@ strong {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--accent-pink);
-  box-shadow: 0 0 8px rgba(216, 91, 142, 0.75);
+  background: var(--accent-gold);
+  box-shadow: 0 0 6px rgba(201, 176, 103, 0.5);
 }
 
 .cal-tooltip {
@@ -1191,6 +1138,14 @@ strong {
   .type-hero,
   .hero-copy h1 {
     max-width: none;
+  }
+
+  /* Явно один clamp для hero и логотипа — визуально совпадают на телефоне */
+  .type-hero,
+  .hero-copy h1,
+  .nav .logo .brand-mark--site {
+    font-size: clamp(1.65rem, 6.8vw, 2.45rem);
+    line-height: 1.12;
   }
 
   .nav {
