@@ -57,6 +57,21 @@ const galleryPhotosFallback = [];
 
 const MANIFEST_URL = "assets/photos/manifest.json";
 
+/** Данные из static-embed.js — для file:// и офлайна, когда fetch к JSON недоступен */
+function readEmbedGalleryManifest() {
+  const raw = typeof window !== "undefined" ? window.__COFEPOINT_EMBED : null;
+  const m = raw && raw.galleryManifest;
+  if (!m || !Array.isArray(m.photos) || m.photos.length === 0) return null;
+  return m;
+}
+
+function readEmbedCoffeeCalendar() {
+  const raw = typeof window !== "undefined" ? window.__COFEPOINT_EMBED : null;
+  const c = raw && raw.coffeeCalendar;
+  if (!c || !Array.isArray(c.items) || c.items.length === 0) return null;
+  return c;
+}
+
 function inferFloor(photo) {
   const explicit = photo && typeof photo.floor === "number" ? photo.floor : null;
   if (explicit === 2 || explicit === 11) return explicit;
@@ -397,6 +412,7 @@ async function loadCoffeeCalendar() {
   const year = Number(root.dataset.calYear) || 2026;
 
   const itemsByDate = new Map();
+  let loaded = false;
 
   try {
     const res = await fetch(CALENDAR_DATA_URL, { cache: "no-store" });
@@ -408,17 +424,29 @@ async function loadCoffeeCalendar() {
             itemsByDate.set(it.date, { title: it.title, text: it.text });
           }
         }
+        loaded = itemsByDate.size > 0;
       }
     }
   } catch {
-    /* file:// or offline */
+    /* file:// или сеть */
+  }
+
+  if (!loaded) {
+    const emb = readEmbedCoffeeCalendar();
+    if (emb && Number(emb.year) === year) {
+      for (const it of emb.items) {
+        if (it && it.date && it.title && it.text) {
+          itemsByDate.set(it.date, { title: it.title, text: it.text });
+        }
+      }
+    }
   }
 
   const status = document.getElementById("coffee-calendar-status");
   if (itemsByDate.size === 0 && status) {
     status.classList.remove("visually-hidden");
     status.textContent =
-      "Календарь открылся без базы подсказок — так бывает при открытии страницы как файла с диска. Запустите локальный сервер из папки сайта, и подсказки подгрузятся из assets/data/.";
+      "Календарь без подсказок: нет static-embed.js или данных. Запустите node tools/embed-static-data.mjs или откройте сайт через локальный сервер.";
   } else if (status) {
     status.classList.add("visually-hidden");
     status.textContent = "";
@@ -489,6 +517,7 @@ function renderGalleryPhotos(photos) {
 
 async function loadGalleryManifest() {
   let photos = galleryPhotosFallback.slice();
+  let loaded = false;
 
   try {
     const res = await fetch(MANIFEST_URL, { cache: "no-store" });
@@ -496,10 +525,18 @@ async function loadGalleryManifest() {
       const data = await res.json();
       if (Array.isArray(data.photos) && data.photos.length > 0) {
         photos = data.photos;
+        loaded = true;
       }
     }
   } catch {
-    /* file:// or offline */
+    /* file:// или сеть */
+  }
+
+  if (!loaded) {
+    const emb = readEmbedGalleryManifest();
+    if (emb) {
+      photos = emb.photos;
+    }
   }
 
   renderGalleryPhotos(photos);
