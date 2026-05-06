@@ -1,0 +1,20 @@
+{
+    "photos":  [
+                   {
+                       "src":  "assets/photos/11floor_1.jpg",
+                       "alt":  "11floor_1"
+                   },
+                   {
+                       "src":  "assets/photos/11floor_2.jpg",
+                       "alt":  "11floor_2"
+                   },
+                   {
+                       "src":  "assets/photos/2floor_1.jpg",
+                       "alt":  "2floor_1"
+                   },
+                   {
+                       "src":  "assets/photos/2floor_2.jpg",
+                       "alt":  "2floor_2"
+                   }
+               ]
+}

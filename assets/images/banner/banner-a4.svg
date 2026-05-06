@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2480" height="3508" viewBox="0 0 2480 3508">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff8f3"/>
+      <stop offset="100%" stop-color="#fffdfb"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd9c8"/>
+      <stop offset="100%" stop-color="#ffb99f"/>
+    </linearGradient>
+    <style>
+      .h1 { font: 800 138px Arial, sans-serif; fill: #2f2a2a; }
+      .h2 { font: 700 84px Arial, sans-serif; fill: #2f2a2a; }
+      .body { font: 600 62px Arial, sans-serif; fill: #3b3434; }
+      .small { font: 500 50px Arial, sans-serif; fill: #5b4f4f; }
+      .tag { font: 700 56px Arial, sans-serif; fill: #ffffff; }
+    </style>
+  </defs>
+
+  <rect width="2480" height="3508" fill="url(#bg)"/>
+  <circle cx="2190" cy="320" r="280" fill="#e8e3ff" opacity="0.7"/>
+  <circle cx="340" cy="3130" r="360" fill="#d8f3e8" opacity="0.8"/>
+  <rect x="120" y="180" width="2240" height="220" rx="110" fill="url(#accent)"/>
+  <text x="220" y="325" class="h1">CoffeeFriends</text>
+  <text x="1460" y="325" class="tag">BC KITEZH</text>
+
+  <text x="180" y="620" class="h2">A vy znali?</text>
+  <text x="180" y="730" class="body">Mozg + ideya =&gt; marshrut</text>
+  <rect x="1620" y="610" width="620" height="180" rx="34" fill="#ffffff" stroke="#eadfd8" stroke-width="6"/>
+  <text x="1680" y="725" class="small">ikona lifta</text>
+
+  <rect x="140" y="890" width="2200" height="780" rx="48" fill="#ffffff" stroke="#efe3dc" stroke-width="8"/>
+  <text x="220" y="1060" class="h2">2 and 11 etazh</text>
+  <text x="220" y="1190" class="body">Chelovek + stakan = profit | love</text>
+  <text x="220" y="1320" class="body">Iz liftov napravo, k ogonkam</text>
+  <path d="M1900,1110 C2100,1110 2180,1260 2100,1400 C2020,1540 1800,1540 1730,1400" fill="none" stroke="#ff9b75" stroke-width="20" stroke-linecap="round"/>
+  <polygon points="1700,1400 1770,1360 1760,1440" fill="#ff9b75"/>
+
+  <rect x="520" y="1770" width="1440" height="940" rx="58" fill="#fff" stroke="#eadfd8" stroke-width="8"/>
+  <text x="690" y="1920" class="small">Dumai medlenno, navodi kameru bystro!</text>
+  <text x="780" y="2000" class="small">Pit ili ne pit i vot v chem vopros...</text>
+
+  <rect x="900" y="2080" width="680" height="680" rx="24" fill="#f7f7f7" stroke="#cbc5c1" stroke-width="6"/>
+  <text x="1145" y="2445" class="body">QR</text>
+
+  <text x="220" y="2870" class="h2">Kto ty segodnya?</text>
+  <text x="220" y="2990" class="body">Matcha, kapuch, lateshenka i rafchik?</text>
+  <text x="220" y="3110" class="body">A mozhet prosto snegom stat?</text>
+
+  <rect x="140" y="3210" width="2200" height="190" rx="34" fill="#2b2b2b"/>
+  <text x="220" y="3330" class="tag">Scan QR: menu, barista, coffee stories, contacts</text>
+</svg>

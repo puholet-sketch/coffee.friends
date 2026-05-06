@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#121212">
+  <meta name="color-scheme" content="dark">
+  <title>CoffeeFriends — кофе на 2 и 11 этажах | БЦ Китеж</title>
+  <meta name="description" content="CoffeeFriends: кофе, завтраки и дружелюбная атмосфера в БЦ Китеж, Москва. 2 и 11 этаж.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <header class="hero" id="top">
+    <nav class="nav" aria-label="Основная навигация">
+      <a class="logo" href="#top" aria-label="CoffeeFriends">
+        <span class="brand-mark" aria-hidden="true"><span class="text-accent-gold">Coffee</span><span class="text-accent-pink">Friends</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#route">Как дойти</a>
+        <a href="#drinks">Напитки</a>
+        <a href="#more">Ещё в меню</a>
+        <a href="#gallery">Фото</a>
+        <a href="#coffee-calendar">Календарь</a>
+        <a href="#jokes">Шутки</a>
+        <a href="#feedback">Пожелания</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+    </nav>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="tag"><span class="tag-dot" aria-hidden="true"></span> БЦ Китеж · ул. Киевская, 7к2 · Москва</p>
+        <h1 class="type-hero">Кофе, который <span class="text-accent-pink">собирает</span> людей<br>на <span class="text-accent-gold">2</span> и <span class="text-accent-gold">11</span> этажах</h1>
+        <p class="subtitle">
+          Неоновая вывеска «КОФЕ», привычный вкус и бариста, который помнит ваш заказ.
+          Заходите в ту точку, что ближе к лифту.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#drinks">Меню напитков</a>
+          <a class="btn btn-ghost" href="#feedback">Написать нам</a>
+        </div>
+        <ul class="hero-bullets" aria-label="Почему мы">
+          <li>Быстро под офисный ритм</li>
+          <li>Классика, раф, матча</li>
+          <li>Навынос и у стойки</li>
+        </ul>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card neon-frame">
+          <span class="hero-card-label">Кофе объединяет</span>
+          <p class="hero-card-quote type-pullquote">Кто ты сегодня: латте, капуч, раф — или просто снегом стать?</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="section section-route" id="route">
+      <div class="section-head">
+        <p class="eyebrow">Маршрут</p>
+        <h2>Как пройти</h2>
+        <p class="lead">
+          Лифт на <strong>2</strong> или <strong>11 этаж</strong> → неоновая вывеска «КОФЕ» → вы у CoffeeFriends.
+        </p>
+      </div>
+      <figure class="route-banner neon-frame" aria-label="Инфографика маршрута к кофейне">
+        <img
+          src="assets/images/banner/coffee-friends-banner-infographic.png"
+          width="1920"
+          height="1080"
+          loading="lazy"
+          decoding="async"
+          alt="Как пройти к кофейне CoffeeFriends: лифт на этажи 2 и 11, неоновая вывеска КОФЕ"
+        >
+      </figure>
+      <div class="route-steps">
+        <article class="surface-card step-card">
+          <span class="step-num">1</span>
+          <h3>Лифт</h3>
+          <p>Выберите <strong>2</strong> или <strong>11 этаж</strong>.</p>
+        </article>
+        <article class="surface-card step-card">
+          <span class="step-num">2</span>
+          <h3>Неон</h3>
+          <p>К вывеске <strong>«КОФЕ»</strong> — по огонькам из коридора.</p>
+        </article>
+        <article class="surface-card step-card">
+          <span class="step-num">3</span>
+          <h3>Заказ</h3>
+          <p>Скажите, что хотите — или доверьтесь бариста.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-drinks" id="drinks">
+      <div class="section-head">
+        <p class="eyebrow">Меню</p>
+        <h2>Основные напитки</h2>
+        <p class="lead">Цены ориентировочные — актуальные уточняйте у стойки.</p>
+      </div>
+      <div class="chart-wrap neon-frame">
+        <table class="drinks-table" aria-describedby="drinks-desc">
+          <caption id="drinks-desc" class="visually-hidden">Основные напитки и цены</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="drinks-table__th-icon"><span class="visually-hidden">Иконка</span></th>
+              <th scope="col">Напиток</th>
+              <th scope="col">Объём / кратко</th>
+              <th scope="col">Цена</th>
+            </tr>
+          </thead>
+          <tbody id="drinksBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section section-more" id="more">
+      <div class="section-head">
+        <p class="eyebrow">Ещё</p>
+        <h2>Остальной ассортимент</h2>
+        <p class="lead">Категории и вилки цен — полный перечень в точке и у бариста.</p>
+      </div>
+      <div class="chart-wrap neon-frame">
+        <table class="drinks-table drinks-table--assort" aria-describedby="assort-desc">
+          <caption id="assort-desc" class="visually-hidden">Остальной ассортимент: категории и цены</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="drinks-table__th-icon"><span class="visually-hidden">Иконка</span></th>
+              <th scope="col">Категория</th>
+              <th scope="col">Кратко</th>
+              <th scope="col">Цена</th>
+            </tr>
+          </thead>
+          <tbody id="categoryBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section section-gallery" id="gallery">
+      <div class="section-head">
+        <p class="eyebrow">Атмосфера</p>
+        <h2>Фото точек</h2>
+        <p class="lead lead--muted">Два этажа — две стойки. Ниже снимки с <strong class="text-accent-gold">2</strong> и <strong class="text-accent-gold">11</strong> этажей.</p>
+      </div>
+      <div id="galleryFloorRoot" class="gallery-floors" aria-live="polite"></div>
+    </section>
+
+    <section class="section section-calendar" id="coffee-calendar" aria-labelledby="coffee-calendar-title">
+      <div class="section-head">
+        <p class="eyebrow">Только про кофе</p>
+        <h2 id="coffee-calendar-title">Сыграем в игру?</h2>
+        <p class="lead">
+          Календарь <strong class="text-accent-gold">2026</strong>: на части дней спрятана короткая история, факт или личность из мира кофе.
+          Подсказка не болтается на странице — она живёт в базе на сайте и появляется при наведении или фокусе.
+          На телефоне нажмите на день с точкой.
+        </p>
+      </div>
+      <p class="calendar-legend" aria-hidden="true">
+        <span class="calendar-legend__dot"></span> — есть история
+      </p>
+      <div id="coffeeCalendarRoot" class="coffee-calendar-root" data-cal-year="2026"></div>
+      <p id="coffee-calendar-status" class="calendar-status visually-hidden" role="status"></p>
+      <p id="coffee-cal-live" class="visually-hidden" aria-live="polite"></p>
+      <div id="coffeeCalTooltip" class="cal-tooltip" role="tooltip" hidden>
+        <strong class="cal-tooltip__title" id="coffeeCalTooltipTitle"></strong>
+        <p class="cal-tooltip__text" id="coffeeCalTooltipBody"></p>
+        <button type="button" class="cal-tooltip__close" id="coffeeCalTooltipClose">Закрыть</button>
+      </div>
+    </section>
+
+    <section class="section section-jokes" id="jokes">
+      <div class="section-head">
+        <p class="eyebrow">Юмор</p>
+        <h2>Шуточки про кофе</h2>
+        <p class="lead">Про офис, IT, планёрки и дейлики — и пару слов со стойки.</p>
+      </div>
+      <div class="jokes-grid">
+        <article class="surface-card joke-card joke-card--gold">
+          <p>Дедлайн горит — а раф ещё держит температуру.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--pink">
+          <p>Капучино без пенки — как понедельник без кофе: теоретически возможно.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--cyan">
+          <p>Латте знает всё о молоке. Вы — о жизни. Договорились?</p>
+        </article>
+        <article class="surface-card joke-card joke-card--violet">
+          <p>Эспрессо: мало слов, много смысла — как хороший статус в чате.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--gold">
+          <p>Кофе-брейк — единственная встреча, куда все приходят вовремя.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--pink">
+          <p>Говорят, баг уходит после кофе. Проверим на втором рафе.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--cyan">
+          <p>Планёрка в девять — это не «рано». Это когда вчерашний вы ещё не успел допить вчерашний кофе.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--violet">
+          <p>Дейлик на пятнадцать минут и кружка на тридцать — офисный планктон в устойчивом равновесии.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--gold">
+          <p>ИТ-шник без кофе — как код без точки с запятой: где-то обязательно сломается, просто не сразу.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--pink">
+          <p>Когда говорят «статус к EOD», планктон кивает. Бариста уже наливает второй: он знает, что такое EOD.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--cyan joke-card--barista">
+          <p><span class="joke-card__label">Со стойки</span>Если заказ звучит как название эпика в Jira — мы всё равно сделаем раф. Без подзадач.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--violet">
+          <p>«Блокер» снимается двумя способами: апдейтом в чате или двойным эспрессо. Логи пока молчат — зато вы уже бодрее.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--gold">
+          <p>Планирование спринта без кофе — спорный PR: формально можно, но на ревью вас разнесут.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--pink">
+          <p>Кофе на дейлике — единственный легальный фоновый шум, за который с камеры не выключат.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--cyan">
+          <p>Офисный планктон не ленивый. Он инкрементально набирает кофеин по утрам, релиз за релизом.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--violet">
+          <p>Confluence написан кровью, потом и кофе. В основном кофе.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--gold joke-card--barista">
+          <p><span class="joke-card__label">Со стойки</span>Мы не читаем ваши RFC. Но «как обычно, только вчера было другое» — понимаем с полуслова.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--pink">
+          <p>Stand-up длится ровно столько, сколько остывает латте. Совпадение? Инвестируем в термостаканы.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--cyan">
+          <p>Когда в календаре всё цветом — красный, жёлтый, зелёный — у стойки хотя бы один цвет стабилен: корица в капучино.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--violet">
+          <p>«Это быстрый вопрос» на слот в пятнадцать минут — классика. «Быстрый раф» — тоже. Один из двух чаще правдивее.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--gold">
+          <p>Scrum Master смотрит на burn-down. Бариста — на остаток зёрен. Оба чувствуют конец спринта.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--pink joke-card--barista">
+          <p><span class="joke-card__label">Со стойки</span>Мердж в пятницу вы переживёте сами. Мы лишь обеспечим моральную и молочную поддержку.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--cyan">
+          <p>ИТ: «У меня всё зависло». Бариста: «Секунду, дожмём шот». Разные контексты — один уровень эмпатии.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--violet">
+          <p>Ретро без кофе — это не ретро, это постмортем настроения. Закон офисной физики.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--gold">
+          <p>Когда в чате пишут «созвонимся на пять минут», планктон берёт не кружку, а кувшин воды. Опыт — сын ошибок трудных.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--pink">
+          <p>Кофе на планёрке не решает задачи. Но делает терпимым человека, который говорит «давайте синхронизируемся» в третий раз.</p>
+        </article>
+        <article class="surface-card joke-card joke-card--cyan joke-card--barista">
+          <p><span class="joke-card__label">Со стойки</span>Если вы объясняете заказ как архитектуру микросервисов — ок. Главное, чтобы в конце было «с сиропом или без».</p>
+        </article>
+        <article class="surface-card joke-card joke-card--violet">
+          <p>Демо для заказчика и первая чашка после обеда — одинаковый адреналин. Разница только в том, кто задаёт вопросы.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-stories" id="stories">
+      <div class="section-head">
+        <p class="eyebrow">О нас</p>
+        <h2>Коротко</h2>
+      </div>
+      <div class="stories-list">
+        <article class="surface-card story-card">
+          <h3>Офисный ритм</h3>
+          <p>Быстро и аккуратно — и на встречу, и на кофе-брейк.</p>
+        </article>
+        <article class="surface-card story-card">
+          <h3>Молоко и альтернативы</h3>
+          <p>Овсяное, кокосовое и другое — спросите у бариста.</p>
+        </article>
+        <article class="surface-card story-card">
+          <h3>Сезонное</h3>
+          <p>Лимитки на стойке — заглядывайте по пути к лифту.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-feedback" id="feedback">
+      <div class="feedback-layout surface-card neon-frame">
+        <div class="feedback-copy">
+          <p class="eyebrow">Связь</p>
+          <h2>Обратная связь и пожелания</h2>
+          <p class="lead">
+            Что зашло, чего не хватает в меню, как удобнее для вашего этажа — напишите, разберём по существу.
+          </p>
+          <a class="btn btn-primary mail-btn" href="mailto:coffee.friends@yandex.ru?subject=CoffeeFriends%20—%20обратная%20связь">
+            coffee.friends@yandex.ru
+          </a>
+          <p class="feedback-note">В теме укажите этаж (2 или 11) — так быстрее поймём контекст.</p>
+        </div>
+        <aside class="feedback-aside" aria-label="Идеи для письма">
+          <h3>О чём написать</h3>
+          <ul>
+            <li>Новый напиток или сироп</li>
+            <li>Очереди и время работы</li>
+            <li>Спасибо бариста</li>
+            <li>Корпоративные завтраки</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contacts">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong class="brand-mark brand-mark--footer" aria-label="CoffeeFriends"><span aria-hidden="true"><span class="text-accent-gold">Coffee</span><span class="text-accent-pink">Friends</span></span></strong>
+        <p>БЦ Китеж, ул. Киевская, 7к2 · 2 и 11 этаж</p>
+      </div>
+      <div class="footer-links">
+        <p><a href="mailto:coffee.friends@yandex.ru">coffee.friends@yandex.ru</a></p>
+      </div>
+      <a class="footer-top" href="#top">Наверх</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
