@@ -425,19 +425,52 @@ strong {
 }
 
 .hours-strip {
-  padding: 20px 22px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background: var(--surface);
-  max-width: 36rem;
+  padding: 0;
+  max-width: 28rem;
+  overflow: hidden;
 }
 
-.hours-strip__text {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.55;
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.hours-table caption {
+  padding: 0;
+}
+
+.hours-table tbody tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.hours-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.hours-table th {
+  text-align: left;
+  font-weight: 600;
   color: var(--text-muted);
+  padding: 14px 18px;
+  width: 38%;
+  vertical-align: middle;
+}
+
+.hours-table td {
+  text-align: right;
+  font-weight: 700;
+  color: var(--accent-gold);
+  padding: 14px 18px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+}
+
+.hours-table__closed {
+  color: var(--text-dim);
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 .lead {
