@@ -1334,6 +1334,15 @@ strong {
   display: inline-block;
 }
 
+.footer-address {
+  margin: 10px 0 0;
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
 .footer-links p {
   margin: 0 0 6px;
   font-size: 0.9375rem;
