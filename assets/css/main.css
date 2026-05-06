@@ -793,6 +793,9 @@ strong {
     min-width: 0;
     max-width: none;
     padding-right: 10px;
+  }
+
+  .drinks-table td:nth-child(4) {
     font-size: 0.8125rem;
   }
 
