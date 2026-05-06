@@ -727,18 +727,22 @@ strong {
 }
 
 .gallery-floor-head {
+  display: flex;
+  justify-content: center;
   margin-bottom: 14px;
 }
 
 .floor-badge {
   display: inline-block;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  border-radius: 0;
 }
 
 .floor-badge.floor-2,
