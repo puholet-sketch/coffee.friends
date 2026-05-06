@@ -9,12 +9,23 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <title>CoffeeFriends — кофе на 2 и 11 этажах | БЦ Китеж</title>
   <meta name="description" content="CoffeeFriends: кофе, завтраки и дружелюбная атмосфера в БЦ Китеж, Москва. 2 и 11 этаж.">
+  <link rel="canonical" href="https://puholet-sketch.github.io/coffee.friends/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://puholet-sketch.github.io/coffee.friends/">
+  <meta property="og:title" content="CoffeeFriends — кофе на 2 и 11 этажах | БЦ Китеж">
+  <meta property="og:description" content="CoffeeFriends: кофе, завтраки и дружелюбная атмосфера в БЦ Китеж, Москва. 2 и 11 этаж.">
+  <meta property="og:image" content="https://puholet-sketch.github.io/coffee.friends/assets/images/banner/coffee-friends-banner-infographic.png">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CoffeeFriends — кофе на 2 и 11 этажах | БЦ Китеж">
+  <meta name="twitter:description" content="CoffeeFriends: кофе, завтраки и дружелюбная атмосфера в БЦ Китеж, Москва. 2 и 11 этаж.">
+  <meta name="twitter:image" content="https://puholet-sketch.github.io/coffee.friends/assets/images/banner/coffee-friends-banner-infographic.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
-<body>
+<body data-feedback-whatsapp="" data-feedback-telegram="">
   <header class="hero" id="top">
     <nav class="nav" aria-label="Основная навигация">
       <a class="logo" href="#top" aria-label="CoffeeFriends">
@@ -34,9 +45,11 @@
       <div class="hero-copy">
         <p class="tag"><span class="tag-dot" aria-hidden="true"></span> БЦ Китеж · ул. Киевская, 7к2 · Москва</p>
         <h1 class="type-hero">Кофе, который <span class="text-accent-pink">собирает</span> людей<br>на <span class="text-accent-gold">2</span> и <span class="text-accent-gold">11</span> этажах</h1>
+        <p class="hero-value">
+          Свежая обжарка, привычный вкус и бариста, который помнит заказ — две точки у лифта, без сюрпризов в чашке.
+        </p>
         <p class="subtitle">
-          Неоновая вывеска «КОФЕ», привычный вкус и бариста, который помнит ваш заказ.
-          Заходите в ту точку, что ближе к лифту.
+          Неоновая вывеска «КОФЕ» и дружелюбная стойка: навынос или перекус рядом с офисом.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#drinks">Меню напитков</a>
@@ -91,6 +104,8 @@
         <figure class="route-banner neon-frame" aria-label="Инфографика маршрута к кофейне">
           <img
             src="assets/images/banner/coffee-friends-banner-infographic.png"
+            srcset="assets/images/banner/coffee-friends-banner-infographic.png 1920w"
+            sizes="(min-width: 980px) min(92vw, 1360px), 100vw"
             width="1920"
             height="1080"
             loading="lazy"
@@ -163,6 +178,7 @@
           <a class="btn btn-primary mail-btn" href="mailto:coffee.friends@yandex.ru?subject=CoffeeFriends%20—%20обратная%20связь">
             coffee.friends@yandex.ru
           </a>
+          <div id="feedbackQuickChannels" class="feedback-quick-channels" hidden></div>
           <p class="feedback-note">В теме укажите этаж (2 или 11) — так быстрее поймём контекст.</p>
         </div>
         <aside class="feedback-aside" aria-label="Идеи для письма">
@@ -227,12 +243,18 @@
         <h2>Шуточки про кофе</h2>
         <p class="lead">Про офис, встречи и кофе-брейки — и пару слов со стойки.</p>
       </div>
-      <div class="jokes-controls" aria-live="polite">
-        <button type="button" class="jokes-next" id="jokesPrevBtn" aria-label="Показать предыдущую порцию шуток">
-          <span aria-hidden="true">←</span>
-        </button>
-        <button type="button" class="jokes-next" id="jokesNextBtn" aria-label="Показать следующую порцию шуток">
-          <span aria-hidden="true">→</span>
+      <div class="jokes-toolbar">
+        <div class="jokes-controls" aria-live="polite">
+          <button type="button" class="jokes-next" id="jokesPrevBtn" aria-label="Показать предыдущую порцию шуток">
+            <span aria-hidden="true">←</span>
+          </button>
+          <span class="jokes-page-indicator" id="jokesPageIndicator" aria-live="polite"></span>
+          <button type="button" class="jokes-next" id="jokesNextBtn" aria-label="Показать следующую порцию шуток">
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+        <button type="button" class="btn btn-ghost jokes-show-all" id="jokesShowAllBtn" aria-expanded="false">
+          Показать все
         </button>
       </div>
       <div class="jokes-grid">

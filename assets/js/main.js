@@ -429,6 +429,9 @@ function renderCoffeeCalendarShell(itemsByDate) {
 }
 
 async function loadCoffeeCalendar() {
+  const section = document.getElementById("coffee-calendar");
+  if (section && section.hasAttribute("hidden")) return;
+
   const root = document.getElementById("coffeeCalendarRoot");
   if (!root) return;
 
@@ -504,7 +507,7 @@ function renderGalleryPhotos(photos) {
     const src = encodePath(p.src || p.path || "");
     const alt = escapeAttr(p.alt || "CoffeeFriends");
     return `<figure class="gallery-tile">
-      <img src="${src}" alt="${alt}" loading="lazy" decoding="async" width="800" height="600">
+      <img src="${src}" alt="${alt}" loading="lazy" decoding="async" sizes="(min-width: 900px) 42vw, 92vw" width="800" height="600">
     </figure>`;
   };
 
@@ -564,11 +567,80 @@ async function loadGalleryManifest() {
   renderGalleryPhotos(photos);
 }
 
+function initFeedbackChannels() {
+  const wrap = document.getElementById("feedbackQuickChannels");
+  if (!wrap) return;
+
+  const waRaw = document.body.getAttribute("data-feedback-whatsapp") || "";
+  const tgRaw = document.body.getAttribute("data-feedback-telegram") || "";
+  const waDigits = waRaw.replace(/\D/g, "");
+  const tgUser = tgRaw.replace(/^@/, "").trim();
+
+  const parts = [];
+  if (waDigits.length >= 10) {
+    parts.push(
+      `<a class="btn btn-ghost feedback-channel-btn" href="https://wa.me/${escapeAttr(waDigits)}" rel="noopener noreferrer" target="_blank">WhatsApp</a>`
+    );
+  }
+  if (tgUser && /^[a-zA-Z0-9_]{5,32}$/.test(tgUser)) {
+    parts.push(
+      `<a class="btn btn-ghost feedback-channel-btn" href="https://t.me/${escapeAttr(tgUser)}" rel="noopener noreferrer" target="_blank">Telegram</a>`
+    );
+  }
+
+  if (parts.length === 0) {
+    wrap.hidden = true;
+    wrap.innerHTML = "";
+    return;
+  }
+
+  wrap.hidden = false;
+  wrap.innerHTML = `<p class="feedback-channels-label">Быстро в мессенджере</p><div class="feedback-channel-row">${parts.join("")}</div>`;
+}
+
+function whenGallerySectionReady(done) {
+  const el = document.getElementById("gallery");
+  if (!el) {
+    done();
+    return;
+  }
+
+  const schedule = () => {
+    try {
+      if (typeof requestIdleCallback === "function") {
+        requestIdleCallback(() => done(), { timeout: 2800 });
+      } else {
+        setTimeout(done, 24);
+      }
+    } catch {
+      setTimeout(done, 24);
+    }
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    schedule();
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        io.disconnect();
+        schedule();
+      }
+    },
+    { rootMargin: "220px 0px", threshold: 0 }
+  );
+  io.observe(el);
+}
+
 function initJokesPager() {
   const grid = document.querySelector(".jokes-grid");
   const prevBtn = document.getElementById("jokesPrevBtn");
   const nextBtn = document.getElementById("jokesNextBtn");
-  if (!grid || !nextBtn || !prevBtn) return;
+  const indicator = document.getElementById("jokesPageIndicator");
+  const toggleAllBtn = document.getElementById("jokesShowAllBtn");
+  if (!grid || !nextBtn || !prevBtn || !toggleAllBtn) return;
 
   // Все шутки должны иметь категорию-бейдж в едином формате.
   Array.from(grid.querySelectorAll(".joke-card")).forEach((card) => {
@@ -593,12 +665,19 @@ function initJokesPager() {
     Math.ceil(fromCounter.length / pageSize)
   );
 
-  if (pageCount <= 1) {
-    prevBtn.hidden = true;
-    nextBtn.hidden = true;
-  }
-
   let page = 0;
+  let expanded = false;
+
+  function setPagerVisibility() {
+    if (expanded) {
+      prevBtn.hidden = true;
+      nextBtn.hidden = true;
+      return;
+    }
+    const hidePager = pageCount <= 1;
+    prevBtn.hidden = hidePager;
+    nextBtn.hidden = hidePager;
+  }
 
   function sliceFor(arr) {
     if (arr.length === 0) return [];
@@ -607,6 +686,8 @@ function initJokesPager() {
   }
 
   function renderPage() {
+    if (expanded) return;
+
     const regularSlice = new Set(sliceFor(regular));
     const soSlice = new Set(sliceFor(fromCounter));
 
@@ -620,16 +701,39 @@ function initJokesPager() {
     const pageLabel = `Порция шуток ${page + 1} из ${pageCount}`;
     nextBtn.setAttribute("aria-label", `Следующая, ${pageLabel}`);
     prevBtn.setAttribute("aria-label", `Предыдущая, ${pageLabel}`);
+    if (indicator) {
+      indicator.textContent = `${page + 1} / ${pageCount}`;
+    }
+    setPagerVisibility();
   }
 
   prevBtn.addEventListener("click", () => {
+    if (expanded) return;
     page = (page - 1 + pageCount) % pageCount;
     renderPage();
   });
 
   nextBtn.addEventListener("click", () => {
+    if (expanded) return;
     page = (page + 1) % pageCount;
     renderPage();
+  });
+
+  toggleAllBtn.addEventListener("click", () => {
+    expanded = !expanded;
+    toggleAllBtn.setAttribute("aria-expanded", expanded ? "true" : "false");
+    grid.classList.toggle("jokes-grid--expanded", expanded);
+
+    if (expanded) {
+      allCards.forEach((card) => card.classList.remove("is-hidden"));
+      prevBtn.hidden = true;
+      nextBtn.hidden = true;
+      if (indicator) indicator.textContent = `Все · ${allCards.length}`;
+      toggleAllBtn.textContent = "Свернуть";
+    } else {
+      toggleAllBtn.textContent = "Показать все";
+      renderPage();
+    }
   });
 
   renderPage();
@@ -637,6 +741,9 @@ function initJokesPager() {
 
 renderDrinks();
 renderCategories();
-loadGalleryManifest();
+whenGallerySectionReady(() => {
+  loadGalleryManifest();
+});
 loadCoffeeCalendar();
+initFeedbackChannels();
 initJokesPager();
