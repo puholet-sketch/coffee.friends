@@ -1,5 +1,5 @@
 :root {
-  /* База как на референсе: тёмный фон, белый текст, акценты розовый / золото */
+  /* База: тёмный фон, белый текст, золото + розовый для редких акцентов */
   --bg: #121212;
   --bg-elevated: #161616;
   --surface: #1a1d24;
@@ -8,12 +8,11 @@
   --text: #ffffff;
   --text-muted: #9aa0ae;
   --text-dim: #6d7380;
+  /* Палитра: тёмный фон + белый текст + золото; розовый — только акценты в духе hero («собирает») */
   --accent-pink: #d85b8e;
   --accent-gold: #c9b067;
-  --accent-cyan: #5cb4c8;
   --gold: var(--accent-gold);
   --neon-pink: var(--accent-pink);
-  --neon-cyan: var(--accent-cyan);
   --radius: 16px;
   --radius-lg: 20px;
   --font-sans: "Montserrat", system-ui, sans-serif;
@@ -63,8 +62,8 @@ body::before {
   width: 200%;
   height: 200%;
   background:
-    radial-gradient(ellipse at 20% 40%, rgba(92, 239, 255, 0.04) 0%, transparent 45%),
-    radial-gradient(ellipse at 85% 15%, rgba(216, 91, 142, 0.03) 0%, transparent 42%),
+    radial-gradient(ellipse at 20% 40%, rgba(201, 176, 103, 0.05) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 15%, rgba(216, 91, 142, 0.04) 0%, transparent 42%),
     radial-gradient(ellipse at 50% 90%, rgba(201, 176, 103, 0.04) 0%, transparent 48%);
   pointer-events: none;
   z-index: 0;
@@ -94,7 +93,7 @@ code {
   padding: 3px 8px;
   border-radius: 8px;
   border: 1px solid var(--border);
-  color: var(--neon-cyan);
+  color: var(--accent-gold);
 }
 
 strong {
@@ -216,7 +215,7 @@ strong {
 }
 
 .type-display-sub,
-.step-card h3,
+.route-step h3,
 .story-card h3,
 .feedback-aside h3 {
   font-family: var(--font-sans);
@@ -226,7 +225,7 @@ strong {
   color: var(--text);
 }
 
-.step-card h3 {
+.route-step h3 {
   margin: 0 0 8px;
   font-size: var(--text-card-title);
 }
@@ -329,8 +328,8 @@ strong {
 }
 
 .btn-ghost:hover {
-  border-color: rgba(92, 239, 255, 0.45);
-  color: var(--neon-cyan);
+  border-color: rgba(201, 176, 103, 0.45);
+  color: var(--accent-gold);
 }
 
 .mail-btn {
@@ -479,32 +478,46 @@ strong {
   display: block;
 }
 
-.route-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+/* Route: один блок, шаги разделены линией */
+.route-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
 }
 
-.step-card {
-  padding: 20px;
+.route-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px 20px;
+  align-items: start;
+  padding: 20px 22px;
+}
+
+.route-step + .route-step {
+  border-top: 1px solid var(--border);
+}
+
+.route-step__body {
+  min-width: 0;
 }
 
 .step-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 10px;
-  background: rgba(201, 176, 103, 0.12);
-  border: 1px solid rgba(201, 176, 103, 0.28);
+  background: rgba(201, 176, 103, 0.14);
+  border: 1px solid rgba(201, 176, 103, 0.38);
   color: var(--accent-gold);
   font-weight: 800;
   font-size: 0.875rem;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
-.step-card p {
+.route-step p {
   margin: 0;
   font-size: 0.875rem;
   color: var(--text-muted);
@@ -531,7 +544,7 @@ strong {
 }
 
 .drinks-table thead {
-  background: linear-gradient(90deg, rgba(18, 24, 42, 0.95), rgba(26, 34, 56, 0.98));
+  background: linear-gradient(90deg, rgba(24, 24, 26, 0.98), rgba(28, 28, 32, 0.99));
   border-bottom: 1px solid var(--border);
 }
 
@@ -614,7 +627,7 @@ strong {
 .icon-ht--table {
   display: block;
   flex-shrink: 0;
-  color: var(--accent-cyan);
+  color: var(--accent-gold);
   opacity: 0.95;
   transition: color 0.18s ease, opacity 0.18s ease;
 }
@@ -663,10 +676,7 @@ strong {
   border: 1px solid var(--border);
 }
 
-.floor-badge.floor-2 {
-  color: var(--accent-cyan);
-}
-
+.floor-badge.floor-2,
 .floor-badge.floor-11 {
   color: var(--accent-gold);
 }
@@ -919,7 +929,7 @@ strong {
   max-width: min(380px, calc(100vw - 24px));
   padding: 14px 16px 16px;
   border-radius: var(--radius);
-  background: linear-gradient(165deg, rgba(30, 34, 48, 0.98), rgba(14, 16, 22, 0.99));
+  background: linear-gradient(165deg, rgba(28, 28, 32, 0.98), rgba(14, 14, 18, 0.99));
   border: 1px solid rgba(201, 176, 103, 0.35);
   box-shadow:
     0 16px 40px rgba(0, 0, 0, 0.45),
@@ -1013,7 +1023,7 @@ strong {
   grid-template-columns: 1fr minmax(220px, 300px);
   gap: 28px 36px;
   padding: 32px 28px 36px;
-  background: linear-gradient(165deg, rgba(18, 24, 42, 0.95), rgba(10, 12, 20, 0.98));
+  background: linear-gradient(165deg, rgba(26, 26, 30, 0.96), rgba(10, 10, 12, 0.98));
 }
 
 .feedback-copy .lead {
@@ -1084,7 +1094,7 @@ strong {
 }
 
 .footer-links a:hover {
-  color: var(--neon-cyan);
+  color: var(--accent-gold);
 }
 
 .footer-top {
@@ -1103,7 +1113,7 @@ strong {
 }
 
 .footer-top:hover {
-  color: var(--neon-cyan);
+  color: var(--accent-gold);
 }
 
 @media (max-width: 900px) {
@@ -1115,7 +1125,6 @@ strong {
     justify-content: flex-start;
   }
 
-  .route-steps,
   .stories-list,
   .jokes-grid {
     grid-template-columns: 1fr 1fr;
@@ -1159,7 +1168,6 @@ strong {
     column-gap: 14px;
   }
 
-  .route-steps,
   .stories-list,
   .jokes-grid {
     grid-template-columns: 1fr;
