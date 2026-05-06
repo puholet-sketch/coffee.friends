@@ -567,37 +567,6 @@ async function loadGalleryManifest() {
   renderGalleryPhotos(photos);
 }
 
-function initFeedbackChannels() {
-  const wrap = document.getElementById("feedbackQuickChannels");
-  if (!wrap) return;
-
-  const waRaw = document.body.getAttribute("data-feedback-whatsapp") || "";
-  const tgRaw = document.body.getAttribute("data-feedback-telegram") || "";
-  const waDigits = waRaw.replace(/\D/g, "");
-  const tgUser = tgRaw.replace(/^@/, "").trim();
-
-  const parts = [];
-  if (waDigits.length >= 10) {
-    parts.push(
-      `<a class="btn btn-ghost feedback-channel-btn" href="https://wa.me/${escapeAttr(waDigits)}" rel="noopener noreferrer" target="_blank">WhatsApp</a>`
-    );
-  }
-  if (tgUser && /^[a-zA-Z0-9_]{5,32}$/.test(tgUser)) {
-    parts.push(
-      `<a class="btn btn-ghost feedback-channel-btn" href="https://t.me/${escapeAttr(tgUser)}" rel="noopener noreferrer" target="_blank">Telegram</a>`
-    );
-  }
-
-  if (parts.length === 0) {
-    wrap.hidden = true;
-    wrap.innerHTML = "";
-    return;
-  }
-
-  wrap.hidden = false;
-  wrap.innerHTML = `<p class="feedback-channels-label">Быстро в мессенджере</p><div class="feedback-channel-row">${parts.join("")}</div>`;
-}
-
 function whenGallerySectionReady(done) {
   const el = document.getElementById("gallery");
   if (!el) {
@@ -745,5 +714,4 @@ whenGallerySectionReady(() => {
   loadGalleryManifest();
 });
 loadCoffeeCalendar();
-initFeedbackChannels();
 initJokesPager();

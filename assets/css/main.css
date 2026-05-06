@@ -364,10 +364,6 @@ strong {
   color: var(--accent-gold);
 }
 
-.mail-btn {
-  margin-top: 6px;
-}
-
 .hero-bullets {
   margin: 0;
   padding: 0;
@@ -1310,25 +1306,6 @@ strong {
   color: var(--text-dim);
 }
 
-.feedback-quick-channels:not([hidden]) {
-  margin-top: var(--space-md);
-}
-
-.feedback-channels-label {
-  margin: 0 0 var(--space-xs);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-.feedback-channel-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-}
-
 .feedback-channel-btn {
   font-size: 0.8125rem;
   padding: 10px var(--space-md);
@@ -1531,20 +1508,7 @@ strong {
     padding: 14px;
   }
 
-  .mail-btn {
-    width: 100%;
-    min-height: 46px;
-    padding: 12px 14px;
-    font-size: 0.78rem;
-    line-height: 1.25;
-    letter-spacing: 0.03em;
-    text-transform: none;
-    text-align: center;
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-
+  .feedback-channel-btn {`r`n    width: 100%;`r`n    min-height: 46px;`r`n    padding: 12px 14px;`r`n    font-size: 0.78rem;`r`n    line-height: 1.25;`r`n    letter-spacing: 0.03em;`r`n    text-transform: none;`r`n    text-align: center;`r`n    white-space: normal;`r`n    overflow-wrap: anywhere;`r`n    word-break: break-word;`r`n  }`r`n
   .footer {
     padding-top: 22px;
     padding-bottom: max(20px, env(safe-area-inset-bottom, 0px));
