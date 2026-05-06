@@ -558,12 +558,20 @@ strong {
 }
 
 /* Route */
+.section-route {
+  padding-bottom: clamp(14px, 2.4vw, 24px);
+}
+
+.section.section-drinks {
+  padding-top: clamp(14px, 2.6vw, 32px);
+}
+
 .route-layout {
   display: block;
 }
 
 .route-banner {
-  margin: 0 0 24px;
+  margin: 0 0 12px;
   padding: 0;
   overflow: hidden;
   background: #05060a;
