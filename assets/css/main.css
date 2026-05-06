@@ -1187,8 +1187,13 @@ strong {
 }
 
 /* Feedback */
+/* Feedback: без лишнего «воздуха» перед следующей секцией */
 .section-feedback {
-  padding-bottom: max(80px, calc(24px + env(safe-area-inset-bottom, 0px)));
+  padding-bottom: clamp(24px, 4vw, 36px);
+}
+
+.section-stories {
+  padding-top: clamp(22px, 4vw, 36px);
 }
 
 .feedback-layout {
