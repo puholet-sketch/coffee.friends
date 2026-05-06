@@ -1,6 +1,6 @@
-# CoffeeFriends — статическая визитка (COFEPOINT)
+# CoffeeFriends — статическая визитка
 
-Корень деплоя — эта папка: **`index.html`** лежит в корне, все пути латиницей.
+Репозиторий: **github.com/puholet-sketch/coffee.friends**. Корень деплоя — эта папка: **`index.html`** в корне, пути латиницей.
 
 ## Структура
 
@@ -8,23 +8,27 @@
 |------|------------|
 | `index.html` | Точка входа |
 | `assets/css/main.css` | Стили |
-| `assets/js/main.js` | Данные меню, рендер таблиц и галереи |
-| `assets/images/banner/` | PNG/SVG баннеров и печати |
-| `assets/photos/` | Фото точек, `manifest.json` для галереи |
-| `docs/banner/` | Тексты и заметки к макетам баннера (Markdown) |
-| `docs/assortment/` | PDF и внутренние материалы (не участвуют в сайте) |
-| `tools/generate-photo-manifest.ps1` | Пересборка `assets/photos/manifest.json` |
+| `assets/js/main.js` | Меню, галерея, календарь 2026 |
+| `assets/data/coffee-calendar-2026.json` | Подсказки календаря (JSON) |
+| `assets/images/banner/` | PNG/SVG баннеров |
+| `assets/photos/` | Фото точек, `manifest.json` |
+| `docs/` | Материалы к макетам и меню |
+| `tools/` | Скрипты генерации manifest и календаря |
+
+## Публичный сайт (GitHub Pages)
+
+В настройках репозитория: **Settings → Pages → Build and deployment → Branch `main`, folder `/ (root)`**. Тогда адрес:
+
+**https://puholet-sketch.github.io/coffee.friends/**
 
 ## Локальный просмотр
 
-Нужен HTTP-сервер (галерея читает `manifest.json` через `fetch`):
+Нужен HTTP-сервер (`fetch` для `manifest.json` и календаря):
 
 ```bash
 npx --yes serve .
 ```
 
-Затем откройте URL, который выведет `serve`.
-
 ## Фото по этажам
 
-Имена файлов: префикс **`2-`** / **`11-`** или **`2floor_`** / **`11floor_`**. После добавления снимков запустите `tools/generate-photo-manifest.ps1`.
+Префиксы **`2-`** / **`11-`** или **`2floor_`** / **`11floor_`**. После добавления снимков: `tools/generate-photo-manifest.ps1`.
