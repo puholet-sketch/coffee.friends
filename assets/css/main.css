@@ -225,11 +225,6 @@ strong {
   color: var(--text);
 }
 
-.route-step h3 {
-  margin: 0 0 8px;
-  font-size: var(--text-card-title);
-}
-
 .story-card h3 {
   margin: 0 0 10px;
   font-size: var(--text-card-title);
@@ -522,9 +517,9 @@ strong {
 .route-step {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 14px 20px;
+  gap: 6px 12px;
   align-items: start;
-  padding: 20px 22px;
+  padding: 10px 14px;
 }
 
 .route-step + .route-step {
@@ -535,24 +530,31 @@ strong {
   min-width: 0;
 }
 
+.route-step h3 {
+  margin: 0 0 3px;
+  font-size: clamp(0.9375rem, 2.1vw, 1.0625rem);
+  line-height: 1.2;
+}
+
 .step-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
   background: rgba(201, 176, 103, 0.14);
   border: 1px solid rgba(201, 176, 103, 0.38);
   color: var(--accent-gold);
   font-weight: 800;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   margin: 0;
 }
 
 .route-step p {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
   color: var(--text-muted);
 }
 
