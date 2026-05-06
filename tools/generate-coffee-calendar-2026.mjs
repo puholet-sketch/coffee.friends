@@ -1,5 +1,6 @@
 /**
  * Генерирует assets/data/coffee-calendar-2026.json
+ * Диапазон: май 2026 — декабрь 2027 (рабочие дни, шаг 2), факты циклятся.
  * Запуск: node tools/generate-coffee-calendar-2026.mjs
  */
 import fs from "node:fs";
@@ -8,6 +9,9 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const outPath = path.join(__dirname, "..", "assets", "data", "coffee-calendar-2026.json");
+
+const RANGE_FROM = { y: 2026, m: 5 };
+const RANGE_TO = { y: 2027, m: 12 };
 
 const facts = [
   { title: "Легенда о Калди", text: "В Эфиопии рассказывают о пастухе и «бодрых козах» после красных плодов кофейного куста — мифическом старте истории арабики." },
@@ -59,7 +63,7 @@ const facts = [
   { title: "Кофеин и спорт", text: "Исследования допускают умеренный кофеин до нагрузки — но вода всё равно главный союзник, не раф." },
   { title: "Честный trade", text: "Fairtrade и прямые закупки — попытка вернуть фермерам предсказуемую цену; этикетка на пакете — начало разговора." },
   { title: "Тень и птицы", text: "Теневые плантации и сертификаты птиц — способы смягчить удар монокультуры на экосистемы кофейных регионов." },
-  { title: "Рост стейкхолдеров", text: "Обжарщики, бариста, фермеры и гости — цепочка вкуса; если один звено устало, чувствуется во всей чашке." },
+  { title: "Рост стейкхолдеров", text: "Обжарщики, бариста, фермеры и гости — цепочка вкуса; если одно звено устало, чувствуется во всей чашке." },
   { title: "Сенсори и колесо", text: "Колесо вкуса SCA учит называть «чернослив» и «зелёное яблоко» — общий язык между обжаркой и гостем." },
   { title: "Эспрессо и давление", text: "Около 9 бар на современной станции — компромисс между скоростью потока и полнотой экстракции." },
   { title: "Ristretto и lungo", text: "Короткий и длинный шот — не снобизм, а разные балансы сладости и горечи из одной и той же корзины." },
@@ -89,34 +93,45 @@ function ymd(y, m, d) {
   return `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
 }
 
-function workdays2026() {
+/** Рабочие дни с startYm по endYm включительно (m — 1..12) */
+function workdaysInRange(startY, startM, endY, endM) {
   const out = [];
-  for (let m = 1; m <= 12; m++) {
-    const daysInMonth = new Date(2026, m, 0).getDate();
-    for (let day = 1; day <= daysInMonth; day++) {
-      const wd = new Date(2026, m - 1, day, 12, 0, 0).getDay();
-      if (wd >= 1 && wd <= 5) out.push(ymd(2026, m, day));
+  let y = startY;
+  let mo = startM;
+  while (y < endY || (y === endY && mo <= endM)) {
+    const dim = new Date(y, mo, 0).getDate();
+    for (let day = 1; day <= dim; day++) {
+      const wd = new Date(y, mo - 1, day, 12, 0, 0).getDay();
+      if (wd >= 1 && wd <= 5) out.push(ymd(y, mo, day));
+    }
+    mo++;
+    if (mo > 12) {
+      mo = 1;
+      y++;
     }
   }
   return out;
 }
 
-const days = workdays2026();
+const days = workdaysInRange(RANGE_FROM.y, RANGE_FROM.m, RANGE_TO.y, RANGE_TO.m);
 const step = 2;
 const items = [];
-for (let i = 0, fi = 0; i < days.length && fi < facts.length; i += step, fi++) {
+for (let i = 0, fi = 0; i < days.length; i += step, fi++) {
+  const f = facts[fi % facts.length];
   items.push({
     date: days[i],
-    title: facts[fi].title,
-    text: facts[fi].text
+    title: f.title,
+    text: f.text
   });
 }
 
-// Фиксированные «якоря» календаря (все дни года, не только рабочие)
 const anchors = [
   { date: "2026-10-01", title: "Международный день кофе", text: "1 октября — напоминание о фермерах, бариста и честной цепочке от зерна до вашей встречи у лифта." },
   { date: "2026-11-23", title: "День эспрессо", text: "В календаре отмечают и 23 ноября — повод заказать шот с крема и не спорить, кто придумал «правильный» объём." },
-  { date: "2026-12-31", title: "Итог года", text: "Последний день 2026 — хороший повод поблагодарить бариста и выбрать зерно поспокойнее на январь." }
+  { date: "2026-12-31", title: "Итог 2026", text: "Последний день 2026 — хороший повод поблагодарить бариста и выбрать зерно поспокойнее на январь." },
+  { date: "2027-10-01", title: "Международный день кофе", text: "Снова первое октября — напоминание про фермеров, обжарку и честную чашку." },
+  { date: "2027-11-23", title: "День эспрессо", text: "И снова 23 ноября — повод повторить шот с крема и не спорить с рецептом." },
+  { date: "2027-12-31", title: "Итог 2027", text: "Последний день 2027 — можно подвести кофейный баланс года и заглянуть в календарь на следующий." }
 ];
 
 const byDate = new Map(items.map((x) => [x.date, x]));
@@ -126,6 +141,14 @@ for (const a of anchors) {
 
 const merged = [...byDate.values()].sort((a, b) => a.date.localeCompare(b.date));
 
+const payload = {
+  range: {
+    from: `${RANGE_FROM.y}-${String(RANGE_FROM.m).padStart(2, "0")}`,
+    to: `${RANGE_TO.y}-${String(RANGE_TO.m).padStart(2, "0")}`
+  },
+  items: merged
+};
+
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
-fs.writeFileSync(outPath, JSON.stringify({ year: 2026, items: merged }, null, 2), "utf8");
-console.log(`Wrote ${merged.length} entries to ${outPath}`);
+fs.writeFileSync(outPath, JSON.stringify(payload, null, 2), "utf8");
+console.log(`Wrote ${merged.length} entries (${payload.range.from} … ${payload.range.to}) to ${outPath}`);

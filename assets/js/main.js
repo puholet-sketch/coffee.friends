@@ -196,6 +196,17 @@ function calDaysInMonth(year, monthIndex) {
   return new Date(year, monthIndex + 1, 0).getDate();
 }
 
+/** data-cal-from / data-cal-to в формате YYYY-MM */
+function parseCalYearMonth(str) {
+  if (!str || typeof str !== "string") return null;
+  const parts = str.trim().split("-");
+  if (parts.length !== 2) return null;
+  const y = Number(parts[0]);
+  const m = Number(parts[1]);
+  if (!Number.isFinite(y) || !Number.isFinite(m) || m < 1 || m > 12) return null;
+  return { y, m };
+}
+
 function initCoffeeCalendarTooltips(itemsByDate) {
   const root = document.getElementById("coffeeCalendarRoot");
   const tip = document.getElementById("coffeeCalTooltip");
@@ -364,29 +375,35 @@ function initCoffeeCalendarTooltips(itemsByDate) {
   });
 }
 
-function renderCoffeeCalendarShell(year, itemsByDate) {
+function renderCoffeeCalendarShell(itemsByDate) {
   const root = document.getElementById("coffeeCalendarRoot");
   if (!root) return;
+
+  const from = parseCalYearMonth(root.dataset.calFrom) || { y: 2026, m: 5 };
+  const to = parseCalYearMonth(root.dataset.calTo) || { y: 2027, m: 12 };
 
   const weekdaysRow = CAL_WEEKDAYS.map((w) => `<div class="cal-grid__wd">${w}</div>`).join("");
 
   const months = [];
-  for (let mi = 0; mi < 12; mi++) {
-    const pad = calMondayPad(year, mi);
-    const dim = calDaysInMonth(year, mi);
+  let y = from.y;
+  let mo = from.m;
+  while (y < to.y || (y === to.y && mo <= to.m)) {
+    const mi = mo - 1;
+    const pad = calMondayPad(y, mi);
+    const dim = calDaysInMonth(y, mi);
     let cells = "";
     for (let i = 0; i < pad; i++) {
       cells += `<div class="cal-cell--pad" aria-hidden="true"></div>`;
     }
     for (let day = 1; day <= dim; day++) {
-      const ds = calYmd(year, mi + 1, day);
+      const ds = calYmd(y, mo, day);
       const item = itemsByDate.get(ds);
-      const wd = new Date(year, mi, day, 12, 0, 0).getDay();
+      const wd = new Date(y, mi, day, 12, 0, 0).getDay();
       const isWeekend = wd === 0 || wd === 6;
       const wk = isWeekend ? " cal-day--weekend" : "";
       if (item) {
         const mon = CAL_MONTH_NAMES[mi];
-        const al = `${day} ${mon} ${year}: ${item.title}. Подсказка скрыта до наведения или нажатия.`;
+        const al = `${day} ${mon} ${y}: ${item.title}. Подсказка скрыта до наведения или нажатия.`;
         cells += `<button type="button" class="cal-day cal-day--fact${wk}" data-date="${ds}" aria-label="${escapeAttr(al)}">${day}<span class="cal-day__dot" aria-hidden="true"></span></button>`;
       } else {
         cells += `<div class="cal-day cal-day--empty${wk}" aria-hidden="true"><span class="cal-day__num">${day}</span></div>`;
@@ -395,12 +412,17 @@ function renderCoffeeCalendarShell(year, itemsByDate) {
     months.push(
       `<article class="cal-month surface-card neon-frame">
         <header class="cal-month__head">
-          <h3 class="cal-month__title">${CAL_MONTH_NAMES[mi]} <span class="text-accent-gold">${year}</span></h3>
+          <h3 class="cal-month__title">${CAL_MONTH_NAMES[mi]} <span class="text-accent-gold">${y}</span></h3>
         </header>
         <div class="cal-grid__weekdays">${weekdaysRow}</div>
         <div class="cal-grid">${cells}</div>
       </article>`
     );
+    mo++;
+    if (mo > 12) {
+      mo = 1;
+      y++;
+    }
   }
   root.innerHTML = months.join("");
   initCoffeeCalendarTooltips(itemsByDate);
@@ -409,21 +431,25 @@ function renderCoffeeCalendarShell(year, itemsByDate) {
 async function loadCoffeeCalendar() {
   const root = document.getElementById("coffeeCalendarRoot");
   if (!root) return;
-  const year = Number(root.dataset.calYear) || 2026;
 
   const itemsByDate = new Map();
   let loaded = false;
+
+  function ingestItems(arr) {
+    if (!Array.isArray(arr)) return;
+    for (const it of arr) {
+      if (it && it.date && it.title && it.text) {
+        itemsByDate.set(it.date, { title: it.title, text: it.text });
+      }
+    }
+  }
 
   try {
     const res = await fetch(CALENDAR_DATA_URL, { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
-      if (data && Number(data.year) === year && Array.isArray(data.items)) {
-        for (const it of data.items) {
-          if (it && it.date && it.title && it.text) {
-            itemsByDate.set(it.date, { title: it.title, text: it.text });
-          }
-        }
+      if (data && Array.isArray(data.items) && data.items.length > 0) {
+        ingestItems(data.items);
         loaded = itemsByDate.size > 0;
       }
     }
@@ -433,12 +459,8 @@ async function loadCoffeeCalendar() {
 
   if (!loaded) {
     const emb = readEmbedCoffeeCalendar();
-    if (emb && Number(emb.year) === year) {
-      for (const it of emb.items) {
-        if (it && it.date && it.title && it.text) {
-          itemsByDate.set(it.date, { title: it.title, text: it.text });
-        }
-      }
+    if (emb && Array.isArray(emb.items) && emb.items.length > 0) {
+      ingestItems(emb.items);
     }
   }
 
@@ -452,7 +474,7 @@ async function loadCoffeeCalendar() {
     status.textContent = "";
   }
 
-  renderCoffeeCalendarShell(year, itemsByDate);
+  renderCoffeeCalendarShell(itemsByDate);
 }
 
 function encodePath(src) {

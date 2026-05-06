@@ -8,7 +8,7 @@
 |------|------------|
 | `index.html` | Точка входа |
 | `assets/css/main.css` | Стили |
-| `assets/js/main.js` | Меню, галерея, календарь 2026 |
+| `assets/js/main.js` | Меню, галерея, календарь (май 2026 — дек. 2027) |
 | `assets/js/static-embed.js` | Копия manifest + календаря для `file://` (см. ниже) |
 | `assets/data/coffee-calendar-2026.json` | Подсказки календаря (JSON, источник для embed) |
 | `assets/images/banner/` | PNG/SVG баннеров |
