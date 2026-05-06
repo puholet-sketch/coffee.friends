@@ -274,17 +274,13 @@ strong {
   font-weight: 500;
 }
 
-.hero-copy .subtitle {
-  margin-bottom: 12px;
-}
-
 .hero-cta {
   display: grid;
   grid-template-columns: repeat(2, minmax(180px, 260px));
   gap: 8px 12px;
   max-width: none;
   width: 100%;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 
 .hero-cta .btn {
@@ -339,13 +335,6 @@ strong {
 .btn-ghost:hover {
   border-color: rgba(201, 176, 103, 0.45);
   color: var(--accent-gold);
-}
-
-/* Блок «почему мы» — как график работы: surface-card + строки таблицы */
-.hero-bullets-strip {
-  margin: 0;
-  max-width: min(62rem, 100%);
-  width: 100%;
 }
 
 .hero-visual {
@@ -500,22 +489,6 @@ strong {
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
   vertical-align: middle;
-}
-
-/* Hero: блок «почему мы» — слева, плотнее, тот же кегль/акцент что у колонки «Цена» в меню */
-.hours-table.hero-bullets-table {
-  font-size: 0.9375rem;
-}
-
-.hours-table.hero-bullets-table td {
-  text-align: left;
-  padding: 8px 16px;
-  line-height: 1.42;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
-  color: var(--accent-gold);
-  white-space: normal;
 }
 
 .hours-table__closed {
