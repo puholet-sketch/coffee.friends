@@ -641,6 +641,71 @@ strong {
   opacity: 0.85;
 }
 
+/* Узкий экран: без горизонтального скролла — колонка «кратко» скрыта, таблица на всю ширину */
+@media (max-width: 720px) {
+  .chart-wrap {
+    overflow-x: visible;
+  }
+
+  .chart-wrap .drinks-table {
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .drinks-table__col-detail {
+    display: none !important;
+  }
+
+  .drinks-table th,
+  .drinks-table td {
+    padding: 11px 8px;
+  }
+
+  .drinks-table thead th {
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .drinks-table__th-icon,
+  .drinks-table__cell-icon {
+    width: 38px;
+    min-width: 38px;
+    max-width: 42px;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .drinks-table th:nth-child(4),
+  .drinks-table td:nth-child(4) {
+    width: 32%;
+    min-width: 0;
+    max-width: none;
+    padding-right: 10px;
+    font-size: 0.8125rem;
+  }
+
+  .drinks-table td:nth-child(2) {
+    font-size: 0.8125rem;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .drinks-table .icon-ht--table {
+    width: 26px;
+    height: 26px;
+  }
+
+  .drinks-table__icon-wrap img.icon-ht--table {
+    width: 26px;
+    height: 26px;
+    max-width: 26px;
+    object-fit: contain;
+  }
+}
+
 /* Gallery by floor */
 .gallery-floors {
   margin-top: 8px;

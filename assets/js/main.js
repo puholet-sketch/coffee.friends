@@ -124,7 +124,7 @@ function renderDrinks() {
       (row) => `<tr>
         <td class="drinks-table__cell-icon"><span class="drinks-table__icon-wrap">${drinkIconMarkup(row.iconId)}</span></td>
         <td>${escapeHtml(row.name)}</td>
-        <td>${escapeHtml(row.detail)}</td>
+        <td class="drinks-table__col-detail">${escapeHtml(row.detail)}</td>
         <td>${escapeHtml(row.price)}</td>
       </tr>`
     )
@@ -140,7 +140,7 @@ function renderCategories() {
       (cat) => `<tr>
         <td class="drinks-table__cell-icon"><span class="drinks-table__icon-wrap">${assortmentTableIcon(cat)}</span></td>
         <td>${escapeHtml(cat.title)}</td>
-        <td>${escapeHtml(cat.blurb)}</td>
+        <td class="drinks-table__col-detail">${escapeHtml(cat.blurb)}</td>
         <td>${escapeHtml(cat.price)}</td>
       </tr>`
     )
