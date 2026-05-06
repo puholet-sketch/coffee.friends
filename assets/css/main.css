@@ -260,13 +260,6 @@ strong {
   font-weight: 800;
 }
 
-.hero-location {
-  margin: var(--space-sm) 0 0;
-  color: var(--text-dim);
-  font-size: clamp(0.875rem, 1.2vw, 1rem);
-  letter-spacing: 0.04em;
-}
-
 .hero-value {
   margin: 0 0 var(--space-sm);
   max-width: min(62ch, 100%);
