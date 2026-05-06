@@ -260,28 +260,11 @@ strong {
   font-weight: 800;
 }
 
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(26, 29, 36, 0.95);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-size: var(--text-eyebrow);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 0 0 20px;
-}
-
-.tag-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent-gold);
-  box-shadow: 0 0 8px rgba(201, 176, 103, 0.4);
+.hero-location {
+  margin: var(--space-sm) 0 0;
+  color: var(--text-dim);
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  letter-spacing: 0.04em;
 }
 
 .hero-value {
@@ -1349,12 +1332,6 @@ strong {
 .footer-brand .brand-mark--footer {
   margin: 0;
   display: inline-block;
-}
-
-.footer-brand p {
-  margin: 8px 0 0;
-  font-size: 0.875rem;
-  color: var(--text-dim);
 }
 
 .footer-links p {
