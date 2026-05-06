@@ -1260,7 +1260,7 @@ strong {
   font-size: 0.9375rem;
   font-weight: 600;
   line-height: 1.52;
-  color: var(--text-muted);
+  color: var(--accent-gold);
 }
 
 .story-card p {
