@@ -348,10 +348,6 @@ strong {
   width: 100%;
 }
 
-.hero-bullets-table td {
-  text-align: left;
-}
-
 .hero-visual {
   display: flex;
   justify-content: flex-end;
@@ -504,6 +500,22 @@ strong {
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
   vertical-align: middle;
+}
+
+/* Hero: блок «почему мы» — слева, плотнее, тот же кегль/акцент что у колонки «Цена» в меню */
+.hours-table.hero-bullets-table {
+  font-size: 0.9375rem;
+}
+
+.hours-table.hero-bullets-table td {
+  text-align: left;
+  padding: 8px 16px;
+  line-height: 1.42;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--accent-gold);
+  white-space: normal;
 }
 
 .hours-table__closed {
