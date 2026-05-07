@@ -7,8 +7,7 @@ const drinksMenu = [
   { iconId: "flatwhite", name: "Флет уайт", detail: "250 мл", price: "от 270 ₽" },
   { iconId: "raf", name: "Раф", detail: "350 мл", price: "от 340 ₽" },
   { iconId: "matcha", name: "Матча латте", detail: "350 мл", price: "от 300 ₽" },
-  { iconId: "cocoa", name: "Какао и горячий шоколад", detail: "350 мл", price: "от 280 ₽" },
-  { iconId: "tea", name: "Чай в ассортименте", detail: "пакетированный / листовой", price: "от 80 ₽" }
+  { iconId: "cocoa", name: "Какао и горячий шоколад", detail: "350 мл", price: "от 280 ₽" }
 ];
 
 /**
