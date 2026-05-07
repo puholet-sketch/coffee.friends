@@ -4,11 +4,11 @@ const drinksMenu = [
   { iconId: "americano", name: "Американо", detail: "250 мл", price: "от 180 ₽" },
   { iconId: "cappuccino", name: "Капучино", detail: "250 мл", price: "от 250 ₽" },
   { iconId: "latte", name: "Латте", detail: "350 мл", price: "от 300 ₽" },
-  { iconId: "flatwhite", name: "Флэт уайт", detail: "250 мл", price: "от 270 ₽" },
+  { iconId: "flatwhite", name: "Флет уайт", detail: "250 мл", price: "от 270 ₽" },
   { iconId: "raf", name: "Раф", detail: "350 мл", price: "от 340 ₽" },
   { iconId: "matcha", name: "Матча латте", detail: "350 мл", price: "от 300 ₽" },
-  { iconId: "cocoa", name: "Какао / горячий шоколад", detail: "350 мл", price: "от 280 ₽" },
-  { iconId: "tea", name: "Чай в ассортименте", detail: "пакет / заварка", price: "от 80 ₽" }
+  { iconId: "cocoa", name: "Какао и горячий шоколад", detail: "350 мл", price: "от 280 ₽" },
+  { iconId: "tea", name: "Чай в ассортименте", detail: "пакетированный / листовой", price: "от 80 ₽" }
 ];
 
 /**
@@ -16,11 +16,11 @@ const drinksMenu = [
  */
 const assortmentCategories = [
   { iconId: "pastry", title: "Выпечка и десерты", blurb: "Сладкое и снеки в витрине", price: "от 70 ₽" },
-  { iconId: "sandwich", title: "Сэндвичи и еда", blurb: "Сэндвичи, салаты, роллы, горячее", price: "от 270 ₽" },
+  { iconId: "sandwich", title: "Сэндвичи и готовая еда", blurb: "Сэндвичи, салаты, роллы и горячее", price: "от 270 ₽" },
   { iconId: "tea", title: "Фруктовые чаи (горячие)", blurb: "Сезонный формат, чаще в холодный период", price: "от 300 ₽" },
   { iconId: "tea", title: "Лимонады и фреши (холодные)", blurb: "Освежающие позиции на тёплый сезон", price: "от 280 ₽" },
-  { iconId: "coldbrew", title: "Холодный кофе", blurb: "Айс латте, айс мокко, глясе и фрапучино", price: "от 250 ₽" },
-  { iconId: "smoothie", title: "Сезонные авторские напитки", blurb: "Спецпозиции по текущему сезону", price: "от 320 ₽" }
+  { iconId: "coldbrew", title: "Холодный кофе", blurb: "Айс-латте, айс-мокко, глясе и фрапучино", price: "от 250 ₽" },
+  { iconId: "smoothie", title: "Сезонные авторские напитки", blurb: "Напитки по текущему сезону", price: "от 320 ₽" }
 ];
 
 /** Компактные иконки напитков (тот же хай-тек: stroke, currentColor) */
