@@ -1,26 +1,26 @@
 /** Основное меню напитков — iconId: компактная иконка в таблице */
 const drinksMenu = [
-  { iconId: "espresso", name: "Эспрессо", detail: "30 мл", price: "от 140 ₽" },
-  { iconId: "americano", name: "Американо", detail: "200 мл", price: "от 160 ₽" },
-  { iconId: "cappuccino", name: "Капучино", detail: "250 мл", price: "от 220 ₽" },
-  { iconId: "latte", name: "Латте", detail: "300 мл", price: "от 240 ₽" },
-  { iconId: "flatwhite", name: "Флэт уайт", detail: "200 мл", price: "от 250 ₽" },
-  { iconId: "raf", name: "Раф", detail: "классика / ваниль", price: "от 290 ₽" },
-  { iconId: "matcha", name: "Матча латте", detail: "300 мл", price: "от 280 ₽" },
-  { iconId: "cocoa", name: "Какао / горячий шоколад", detail: "300 мл", price: "от 220 ₽" },
-  { iconId: "tea", name: "Чай в ассортименте", detail: "пакет / заварка", price: "от 150 ₽" }
+  { iconId: "espresso", name: "Эспрессо", detail: "30 мл", price: "от 180 ₽" },
+  { iconId: "americano", name: "Американо", detail: "250 мл", price: "от 180 ₽" },
+  { iconId: "cappuccino", name: "Капучино", detail: "250 мл", price: "от 250 ₽" },
+  { iconId: "latte", name: "Латте", detail: "350 мл", price: "от 300 ₽" },
+  { iconId: "flatwhite", name: "Флэт уайт", detail: "250 мл", price: "от 270 ₽" },
+  { iconId: "raf", name: "Раф", detail: "350 мл", price: "от 340 ₽" },
+  { iconId: "matcha", name: "Матча латте", detail: "350 мл", price: "от 300 ₽" },
+  { iconId: "cocoa", name: "Какао / горячий шоколад", detail: "350 мл", price: "от 280 ₽" },
+  { iconId: "tea", name: "Чай в ассортименте", detail: "пакет / заварка", price: "от 80 ₽" }
 ];
 
 /**
  * Остальной ассортимент — та же таблица, что напитки. iconId — SVG как раньше.
  */
 const assortmentCategories = [
-  { iconId: "pastry", title: "Выпечка и десерты", blurb: "Свежее на стойке каждый день", price: "от 120 ₽" },
-  { iconId: "sandwich", title: "Сэндвичи и закуски", blurb: "К обеду без длинного списка на сайте", price: "от 220 ₽" },
-  { iconId: "breakfast", title: "Завтраки", blurb: "Тёплое по расписанию — у бариста", price: "от 250 ₽" },
-  { iconId: "smoothie", title: "Смузи и фреши", blurb: "Сезонные сочетания", price: "от 200 ₽" },
-  { iconId: "tea", title: "Холодный чай и лимонады", blurb: "Освежающие напитки", price: "от 180 ₽" },
-  { iconId: "coldbrew", title: "Айс-кофе и колд-брю", blurb: "Когда жарко в офисе", price: "от 240 ₽" }
+  { iconId: "pastry", title: "Выпечка и десерты", blurb: "Сладкое и снеки в витрине", price: "от 70 ₽" },
+  { iconId: "sandwich", title: "Сэндвичи и еда", blurb: "Сэндвичи, салаты, роллы, горячее", price: "от 270 ₽" },
+  { iconId: "tea", title: "Фруктовые чаи (горячие)", blurb: "Сезонный формат, чаще в холодный период", price: "от 300 ₽" },
+  { iconId: "tea", title: "Лимонады и фреши (холодные)", blurb: "Освежающие позиции на тёплый сезон", price: "от 280 ₽" },
+  { iconId: "coldbrew", title: "Холодный кофе", blurb: "Айс латте, айс мокко, глясе и фрапучино", price: "от 250 ₽" },
+  { iconId: "smoothie", title: "Сезонные авторские напитки", blurb: "Спецпозиции по текущему сезону", price: "от 320 ₽" }
 ];
 
 /** Компактные иконки напитков (тот же хай-тек: stroke, currentColor) */
