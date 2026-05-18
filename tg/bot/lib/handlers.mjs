@@ -29,6 +29,7 @@ import {
   grillKeyboard,
   hotHeatKeyboard,
   sandwichMoreKeyboard,
+  feedbackKeyboard,
   welcomeTypeText,
   askFloorText,
   askNameText,
@@ -39,6 +40,11 @@ import {
   floorLabel,
   EMPTY_CART_ALERT,
 } from "./ui.mjs";
+import {
+  sendBotReport,
+  FEEDBACK_PROMPT,
+  feedbackThanksText,
+} from "./mail-report.mjs";
 
 function tomorrowLabel(offset = 1) {
   const d = new Date();
@@ -112,6 +118,35 @@ export function createHandlers(api, menu, config) {
 
   async function showMain(chatId, messageId, session) {
     await showScreen(chatId, messageId, mainMenuText(session), mainKeyboard(session));
+  }
+
+  function feedbackBackNav(session) {
+    if (session.orderType && session.floor && session.customerName) return "nav:main";
+    if (session.orderType) return "nav:type";
+    return "nav:type";
+  }
+
+  async function beginFeedback(chatId, messageId, session) {
+    session.step = "feedback";
+    await showScreen(chatId, messageId, FEEDBACK_PROMPT, feedbackKeyboard(feedbackBackNav(session)));
+  }
+
+  async function submitFeedback(chatId, from, session, text) {
+    const body = text.slice(0, 4000);
+    const sent = await sendBotReport({
+      kind: "feedback",
+      config,
+      from,
+      chatId,
+      text: body,
+    });
+    session.step = "idle";
+    await reply(chatId, feedbackThanksText(sent));
+    if (session.orderType && session.floor && session.customerName) {
+      await showMain(chatId, null, session);
+    } else if (session.orderType) {
+      await showType(chatId);
+    }
   }
 
   function pushCartItem(session, name, price, heating) {
@@ -255,6 +290,7 @@ export function createHandlers(api, menu, config) {
 
     if (data === "nav:type") {
       clearDraft(session);
+      session.step = "idle";
       await ack();
       await showType(chatId, messageId);
       return;
@@ -291,6 +327,12 @@ export function createHandlers(api, menu, config) {
       await edit(chatId, messageId, cartText(session), cartKeyboard(session));
       return;
     }
+    if (data === "nav:feedback") {
+      await ack();
+      await beginFeedback(chatId, messageId, session);
+      return;
+    }
+
     if (data === "nav:comment") {
       session.step = "comment";
       await ack();
@@ -519,8 +561,27 @@ export function createHandlers(api, menu, config) {
     const from = userFrom(msg);
 
     if (text === "/cancel") {
+      if (session.step === "feedback") {
+        session.step = "idle";
+        if (session.orderType && session.floor && session.customerName) {
+          await showMain(chatId, null, session);
+        } else {
+          await showType(chatId);
+        }
+        return;
+      }
       resetSession(chatId);
       await reply(chatId, "Сброшено. /start — заново.");
+      return;
+    }
+
+    if (text === "/feedback") {
+      await beginFeedback(chatId, null, session);
+      return;
+    }
+
+    if (session.step === "feedback" && text && !text.startsWith("/")) {
+      await submitFeedback(chatId, from, session, text);
       return;
     }
 

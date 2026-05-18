@@ -283,6 +283,10 @@ strong {
   margin-bottom: 0;
 }
 
+.hero-cta .btn-primary {
+  grid-column: 1 / -1;
+}
+
 .hero-cta .btn {
   width: 100%;
   min-width: 0;

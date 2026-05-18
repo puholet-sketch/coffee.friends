@@ -11,3 +11,4 @@ tg/token.txt
 tg/node_modules/
 tg/.poll-offset
 tg/data/
+tg/.env

@@ -7,6 +7,7 @@
     "qr": "node scripts/generate-qr.mjs"
   },
   "dependencies": {
+    "nodemailer": "^7.0.3",
     "qrcode": "^1.5.4"
   }
 }

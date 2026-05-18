@@ -52,6 +52,11 @@
 
 Команда запуска: `cd tg && node bot/index.mjs`
 
+### Почта (ошибки и /feedback)
+
+На сервере создайте `tg/.env` (см. `.env.example`): `SMTP_USER`, `SMTP_PASS` для Яндекс-почты.  
+Письма уходят на `coffee.friends@yandex.ru` с @username или user id клиента.
+
 ---
 
 ## Сайт (уже на GitHub Pages)

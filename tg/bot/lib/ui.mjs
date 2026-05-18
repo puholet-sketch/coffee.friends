@@ -13,6 +13,7 @@ export function orderTypeKeyboard() {
     inline_keyboard: [
       [{ text: "☕ Заказ сейчас (~5–10 мин)", callback_data: "type:now" }],
       [{ text: "📅 Предзаказ на дату", callback_data: "type:pre" }],
+      [{ text: "✉️ Пожелания / обратная связь", callback_data: "nav:feedback" }],
     ],
   };
 }
@@ -63,10 +64,17 @@ export function mainKeyboard(session) {
   if (n) rows.push([{ text: "✅ Отправить бариста", callback_data: "cart:submit" }]);
   rows.push(
     [{ text: "💬 Комментарий", callback_data: "nav:comment" }],
+    [{ text: "✉️ Пожелания", callback_data: "nav:feedback" }],
     [{ text: "↩ Сменить этаж", callback_data: "nav:floor" }],
     [{ text: "↩ Тип заказа", callback_data: "nav:type" }],
   );
   return { inline_keyboard: rows };
+}
+
+export function feedbackKeyboard(backData = "nav:main") {
+  return {
+    inline_keyboard: [[{ text: "← Назад", callback_data: backData }]],
+  };
 }
 
 export function cartKeyboard(session) {
