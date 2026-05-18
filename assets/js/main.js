@@ -1,5 +1,24 @@
+const MENU_DATA_URL = "assets/data/menu.json";
+
+const MENU_ICON_BY_ID = {
+  espresso: "espresso",
+  americano: "americano",
+  cappuccino: "cappuccino",
+  latte: "latte",
+  flatwhite: "flatwhite",
+  raf: "raf",
+  matcha: "matcha",
+  cocoa: "cocoa",
+  pastry: "pastry",
+  sandwich: "sandwich",
+  "tea-hot": "tea",
+  lemonade: "tea",
+  coldbrew: "coldbrew",
+  seasonal: "smoothie"
+};
+
 /** Основное меню напитков — iconId: компактная иконка в таблице */
-const drinksMenu = [
+let drinksMenu = [
   { iconId: "espresso", name: "Эспрессо", detail: "30 мл", price: "от 180 ₽" },
   { iconId: "americano", name: "Американо", detail: "250 мл", price: "от 180 ₽" },
   { iconId: "cappuccino", name: "Капучино", detail: "250 мл", price: "от 250 ₽" },
@@ -13,7 +32,7 @@ const drinksMenu = [
 /**
  * Остальной ассортимент — та же таблица, что напитки. iconId — SVG как раньше.
  */
-const assortmentCategories = [
+let assortmentCategories = [
   { iconId: "pastry", title: "Выпечка и десерты", blurb: "Сладкое и снеки в витрине", price: "от 70 ₽" },
   { iconId: "sandwich", title: "Сэндвичи и готовая еда", blurb: "Сэндвичи, салаты, роллы и горячее", price: "от 270 ₽" },
   { iconId: "tea", title: "Фруктовые чаи (горячие)", blurb: "Сезонный формат, чаще в холодный период", price: "от 300 ₽" },
@@ -21,6 +40,50 @@ const assortmentCategories = [
   { iconId: "coldbrew", title: "Холодный кофе", blurb: "Айс-латте, айс-мокко, глясе и фрапучино", price: "от 250 ₽" },
   { iconId: "smoothie", title: "Сезонные авторские напитки", blurb: "Напитки по текущему сезону", price: "от 320 ₽" }
 ];
+
+function priceLabel(item) {
+  if (item.volumes?.length) {
+    const min = Math.min(...item.volumes.map((v) => v.price));
+    return `от ${min} ₽`;
+  }
+  return `от ${item.priceFrom} ₽`;
+}
+
+function volumeDetail(item) {
+  if (!item.volumes?.length) return "";
+  const ml = item.volumes.map((v) => v.ml).join(" / ");
+  return `${ml} мл`;
+}
+
+async function loadMenuData() {
+  try {
+    const res = await fetch(MENU_DATA_URL);
+    if (!res.ok) return;
+    const data = await res.json();
+    const drinks = data.drinksNow || data.drinks;
+    const food = data.preorderFood || data.categories;
+    if (Array.isArray(drinks) && drinks.length) {
+      drinksMenu = drinks
+        .filter((row) => row.group === "coffee")
+        .map((row) => ({
+          iconId: MENU_ICON_BY_ID[row.id] || row.id || "espresso",
+          name: row.name,
+          detail: volumeDetail(row) || "—",
+          price: priceLabel(row)
+        }));
+    }
+    if (Array.isArray(food) && food.length) {
+      assortmentCategories = food.map((row) => ({
+        iconId: MENU_ICON_BY_ID[row.id] || MENU_ICON_BY_ID[row.kind] || "pastry",
+        title: row.name,
+        blurb: row.kind === "sandwich" ? "Уточните начинку в боте" : row.groupLabel || "",
+        price: priceLabel(row)
+      }));
+    }
+  } catch {
+    /* офлайн / file:// — остаётся встроенное меню */
+  }
+}
 
 /** Компактные иконки напитков (тот же хай-тек: stroke, currentColor) */
 const ICONS_DRINK = {
@@ -707,8 +770,10 @@ function initJokesPager() {
   renderPage();
 }
 
-renderDrinks();
-renderCategories();
+loadMenuData().then(() => {
+  renderDrinks();
+  renderCategories();
+});
 whenGallerySectionReady(() => {
   loadGalleryManifest();
 });

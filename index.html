@@ -35,6 +35,7 @@
         <a href="#hours">График</a>
         <a href="#route">Маршрут</a>
         <a href="#drinks">Меню</a>
+        <a href="#order">Заказ</a>
         <a href="#more">Ассортимент</a>
         <a href="#gallery">Фото</a>
         <a href="#feedback">Написать</a>
@@ -48,8 +49,8 @@
           Свежая обжарка, привычный вкус и бариста, который помнит заказ — две точки у лифта, без сюрпризов в чашке.
         </p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#drinks">Меню напитков</a>
-          <a class="btn btn-ghost" href="#feedback">Написать нам</a>
+          <a class="btn btn-primary" href="#order">Заказ в Telegram</a>
+          <a class="btn btn-ghost" href="#drinks">Меню напитков</a>
         </div>
       </div>
     </div>
@@ -147,6 +148,49 @@
           </thead>
           <tbody id="categoryBody"></tbody>
         </table>
+      </div>
+    </section>
+
+    <section class="section section-order" id="order">
+      <div class="section-head">
+        <p class="eyebrow">Заказ</p>
+        <h2>Заказ и предзаказ на дату в Telegram</h2>
+        <p class="lead">
+          В боте два режима: <strong>заказ сейчас</strong> (напитки, еда, ~5–10 минут) и <strong>предзаказ на дату</strong> (еда и сладкое на завтра или выбранную дату). Бариста отвечают на заказ в группе — вам приходит статус («в работе», «готово» и т.д.).
+        </p>
+      </div>
+      <div class="order-layout">
+        <div class="order-copy">
+          <ol class="order-steps">
+            <li>Откройте бота <strong>@coffeefriends_orders_bot</strong> (ссылка или QR).</li>
+            <li>Выберите <strong>«Заказ сейчас»</strong> или <strong>«Предзаказ на дату»</strong>, этаж <strong>2</strong> / <strong>11</strong>, имя для стойки.</li>
+            <li>Для напитков — объём <strong>250 / 350 / 450 мл</strong> (как в прайсе). Для сэндвичей — начинка, количество, гриль. Для горячего — название блюда текстом.</li>
+            <li>Проверьте корзину и <strong>стоимость заказа</strong> → <strong>«Отправить бариста»</strong>.</li>
+            <li>Бариста ответит по готовности — вам придёт уведомление в боте. <strong>Оплата у стойки.</strong></li>
+          </ol>
+          <div class="order-cta">
+            <a
+              class="btn btn-primary"
+              href="https://t.me/coffeefriends_orders_bot?start=site"
+              rel="noopener noreferrer"
+              target="_blank"
+            >Открыть бота в Telegram</a>
+            <a class="btn btn-ghost" href="#drinks">Смотреть меню на сайте</a>
+          </div>
+          <p class="order-note">Для обратной связи без заказа — <a href="#feedback">почта</a>.</p>
+        </div>
+        <aside class="surface-card order-qr-card" aria-label="QR-код бота">
+          <img
+            src="assets/images/order/bot-qr.png"
+            width="400"
+            height="400"
+            alt="QR-код: открыть бота CoffeeFriends Заказы в Telegram"
+            loading="lazy"
+            decoding="async"
+          >
+          <p class="order-qr-caption">Наведите камеру телефона — откроется бот</p>
+          <p class="order-qr-link"><a href="https://t.me/coffeefriends_orders_bot">t.me/coffeefriends_orders_bot</a></p>
+        </aside>
       </div>
     </section>
 

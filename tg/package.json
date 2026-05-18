@@ -1,0 +1,12 @@
+{
+  "name": "coffeefriends-telegram",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node bot/index.mjs",
+    "qr": "node scripts/generate-qr.mjs"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}

@@ -8,3 +8,6 @@ node_modules/
 tg/token/
 tg/token.txt
 *.token
+tg/node_modules/
+tg/.poll-offset
+tg/data/

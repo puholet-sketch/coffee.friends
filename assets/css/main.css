@@ -1244,6 +1244,97 @@ strong {
   color: var(--text-muted);
 }
 
+/* Order / Telegram */
+.section-order {
+  padding-bottom: clamp(28px, 5vw, 44px);
+}
+
+.order-layout {
+  display: grid;
+  grid-template-columns: 1fr minmax(240px, 320px);
+  gap: 28px 36px;
+  align-items: start;
+}
+
+.order-steps {
+  margin: 0 0 22px;
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.order-steps li {
+  margin-bottom: 10px;
+}
+
+.order-steps strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.order-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.order-note {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.order-note a {
+  color: var(--accent-gold);
+}
+
+.order-qr-card {
+  padding: 20px;
+  text-align: center;
+}
+
+.order-qr-card img {
+  display: block;
+  width: min(100%, 260px);
+  height: auto;
+  margin: 0 auto 14px;
+  border-radius: 12px;
+  background: #f5f0e6;
+}
+
+.order-qr-caption {
+  margin: 0 0 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.order-qr-link {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.order-qr-link a {
+  color: var(--accent-gold);
+  word-break: break-all;
+}
+
+@media (max-width: 820px) {
+  .order-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .order-qr-card img {
+    max-width: 220px;
+  }
+}
+
 /* Feedback */
 /* Feedback: без лишнего «воздуха» перед следующей секцией */
 .section-feedback {

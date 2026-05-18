@@ -1,0 +1,624 @@
+{
+  "meta": {
+    "source": "docs/assortment/catalog.xlsx",
+    "standardVolumesMl": [
+      250,
+      350,
+      450
+    ],
+    "sandwichFillings": [
+      "Говядина",
+      "Индейка",
+      "Курица",
+      "Рыба"
+    ],
+    "orderTypes": {
+      "now": {
+        "label": "Заказ сейчас",
+        "hint": "Напитки и еда — забрать через 5–10 минут"
+      },
+      "preorder": {
+        "label": "Предзаказ на дату",
+        "hint": "Еда и сладкое на завтра или другую дату (без напитков)"
+      }
+    }
+  },
+  "drinksNow": [
+    {
+      "id": "ays_latte",
+      "name": "Айс латте",
+      "group": "seasonal",
+      "groupLabel": "Сезонные напитки",
+      "priceFrom": 320
+    },
+    {
+      "id": "ays_mokko",
+      "name": "Айс Мокко",
+      "group": "cold_coffee",
+      "groupLabel": "Холодный кофе",
+      "priceFrom": 320
+    },
+    {
+      "id": "amerikano",
+      "name": "Американо",
+      "group": "coffee",
+      "groupLabel": "Кофе",
+      "priceFrom": 180,
+      "volumes": [
+        {
+          "ml": 250,
+          "price": 180
+        },
+        {
+          "ml": 350,
+          "price": 220
+        },
+        {
+          "ml": 450,
+          "price": 280
+        }
+      ]
+    },
+    {
+      "id": "apelsin_imbir",
+      "name": "Апельсин имбирь",
+      "group": "tea",
+      "groupLabel": "Фруктовые чаи",
+      "priceFrom": 350,
+      "volumes": [
+        {
+          "ml": 450,
+          "price": 350
+        }
+      ]
+    },
+    {
+      "id": "bambl_kofe",
+      "name": "Бамбл Кофе",
+      "group": "coffee",
+      "groupLabel": "Кофе",
+      "priceFrom": 420,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 420
+        },
+        {
+          "ml": 450,
+          "price": 450
+        }
+      ]
+    },
+    {
+      "id": "ganpauder",
+      "name": "Ганпаудер",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 110,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 110
+        }
+      ]
+    },
+    {
+      "id": "glintveyn_b_a",
+      "name": "Глинтвейн б\\а",
+      "group": "tea",
+      "groupLabel": "Фруктовые чаи",
+      "priceFrom": 300,
+      "volumes": [
+        {
+          "ml": 450,
+          "price": 300
+        }
+      ]
+    },
+    {
+      "id": "glyase",
+      "name": "Глясе",
+      "group": "cold_coffee",
+      "groupLabel": "Холодный кофе",
+      "priceFrom": 250
+    },
+    {
+      "id": "goryachiy_shokolad",
+      "name": "Горячий шоколад",
+      "group": "tea",
+      "groupLabel": "Шоколад",
+      "priceFrom": 350,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 350
+        }
+      ]
+    },
+    {
+      "id": "grechishnyy_chay",
+      "name": "Гречишный чай",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 170
+    },
+    {
+      "id": "imbirnyy_pryanik",
+      "name": "Имбирный пряник",
+      "group": "tea",
+      "groupLabel": "Фруктовые чаи",
+      "priceFrom": 400,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 400
+        },
+        {
+          "ml": 450,
+          "price": 450
+        }
+      ]
+    },
+    {
+      "id": "kakao",
+      "name": "Какао",
+      "group": "tea",
+      "groupLabel": "Шоколад",
+      "priceFrom": 280,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 280
+        },
+        {
+          "ml": 450,
+          "price": 300
+        }
+      ]
+    },
+    {
+      "id": "kakao_bryut",
+      "name": "Какао брют",
+      "group": "tea",
+      "groupLabel": "Шоколад",
+      "priceFrom": 320,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 320
+        }
+      ]
+    },
+    {
+      "id": "kapuchino",
+      "name": "Капучино",
+      "group": "coffee",
+      "groupLabel": "Кофе",
+      "priceFrom": 250,
+      "volumes": [
+        {
+          "ml": 250,
+          "price": 250
+        },
+        {
+          "ml": 350,
+          "price": 300
+        },
+        {
+          "ml": 450,
+          "price": 350
+        }
+      ]
+    },
+    {
+      "id": "kitayskiy_chay",
+      "name": "Китайский чай",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 200
+    },
+    {
+      "id": "klubnika_smorodina_450_ml",
+      "name": "Клубника-Смородина 450 мл",
+      "group": "tea",
+      "groupLabel": "Фруктовые чаи",
+      "priceFrom": 350
+    },
+    {
+      "id": "latte",
+      "name": "Латте",
+      "group": "coffee",
+      "groupLabel": "Кофе",
+      "priceFrom": 300,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 300
+        },
+        {
+          "ml": 450,
+          "price": 350
+        }
+      ]
+    },
+    {
+      "id": "limonady",
+      "name": "Лимонады",
+      "group": "lemonade",
+      "groupLabel": "Лимонады",
+      "priceFrom": 280
+    },
+    {
+      "id": "malina_imbir",
+      "name": "Малина имбирь",
+      "group": "tea",
+      "groupLabel": "Фруктовые чаи",
+      "priceFrom": 300,
+      "volumes": [
+        {
+          "ml": 450,
+          "price": 300
+        }
+      ]
+    },
+    {
+      "id": "malina_shipovnik_450_ml",
+      "name": "Малина-Шиповник 450 мл",
+      "group": "tea",
+      "groupLabel": "Фруктовые чаи",
+      "priceFrom": 350
+    },
+    {
+      "id": "matcha",
+      "name": "Матча",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 300,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 300
+        }
+      ]
+    },
+    {
+      "id": "medovyy_staut",
+      "name": "Медовый стаут",
+      "group": "cold_coffee",
+      "groupLabel": "Холодный кофе",
+      "priceFrom": 380
+    },
+    {
+      "id": "milksheyk",
+      "name": "Милкшейк",
+      "group": "cold_coffee",
+      "groupLabel": "Холодный кофе",
+      "priceFrom": 380
+    },
+    {
+      "id": "mokko",
+      "name": "Мокко",
+      "group": "coffee",
+      "groupLabel": "Кофе",
+      "priceFrom": 320,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 320
+        },
+        {
+          "ml": 450,
+          "price": 350
+        }
+      ]
+    },
+    {
+      "id": "molochnyy_ulun",
+      "name": "Молочный улун",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 130,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 130
+        }
+      ]
+    },
+    {
+      "id": "oblepiha_imbir",
+      "name": "Облепиха имбирь",
+      "group": "tea",
+      "groupLabel": "Фруктовые чаи",
+      "priceFrom": 350,
+      "volumes": [
+        {
+          "ml": 450,
+          "price": 350
+        }
+      ]
+    },
+    {
+      "id": "puer",
+      "name": "Пуэр",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 160,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 160
+        }
+      ]
+    },
+    {
+      "id": "raf",
+      "name": "Раф",
+      "group": "coffee",
+      "groupLabel": "Кофе",
+      "priceFrom": 340,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 340
+        },
+        {
+          "ml": 450,
+          "price": 380
+        }
+      ]
+    },
+    {
+      "id": "raf_avtorskiy",
+      "name": "Раф авторский",
+      "group": "seasonal",
+      "groupLabel": "Сезонные напитки",
+      "priceFrom": 400,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 400
+        },
+        {
+          "ml": 450,
+          "price": 450
+        }
+      ]
+    },
+    {
+      "id": "te_guan_in",
+      "name": "Те гуань инь",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 130,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 130
+        }
+      ]
+    },
+    {
+      "id": "travyanoy_chay",
+      "name": "Травяной чай",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 230
+    },
+    {
+      "id": "flet_uayt",
+      "name": "Флет Уайт",
+      "group": "coffee",
+      "groupLabel": "Кофе",
+      "priceFrom": 270,
+      "volumes": [
+        {
+          "ml": 250,
+          "price": 270
+        },
+        {
+          "ml": 350,
+          "price": 330
+        }
+      ]
+    },
+    {
+      "id": "frapuchino",
+      "name": "Фрапучино",
+      "group": "cold_coffee",
+      "groupLabel": "Холодный кофе",
+      "priceFrom": 400,
+      "volumes": [
+        {
+          "ml": 450,
+          "price": 400
+        }
+      ]
+    },
+    {
+      "id": "fresh_350_ml",
+      "name": "Фреш 350 мл",
+      "group": "lemonade",
+      "groupLabel": "Лимонады",
+      "priceFrom": 370
+    },
+    {
+      "id": "fresh_450_ml",
+      "name": "Фреш 450 мл",
+      "group": "lemonade",
+      "groupLabel": "Лимонады",
+      "priceFrom": 420
+    },
+    {
+      "id": "tseylon",
+      "name": "Цейлон",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 110,
+      "volumes": [
+        {
+          "ml": 350,
+          "price": 110
+        }
+      ]
+    },
+    {
+      "id": "chay_v_paketikah",
+      "name": "Чай в пакетиках",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 80
+    },
+    {
+      "id": "chay_s_zhasminom",
+      "name": "Чай с жасмином",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 130
+    },
+    {
+      "id": "chay_chabrets",
+      "name": "Чай Чабрец",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 130
+    },
+    {
+      "id": "chay_erl_grey",
+      "name": "Чай Эрл Грей",
+      "group": "tea",
+      "groupLabel": "Чай",
+      "priceFrom": 130
+    },
+    {
+      "id": "espresso",
+      "name": "Эспрессо",
+      "group": "coffee",
+      "groupLabel": "Кофе",
+      "priceFrom": 180
+    },
+    {
+      "id": "espresso_tonik",
+      "name": "Эспрессо Тоник",
+      "group": "cold_coffee",
+      "groupLabel": "Холодный кофе",
+      "priceFrom": 380
+    }
+  ],
+  "preorderFood": [
+    {
+      "id": "batonchik",
+      "name": "Батончик",
+      "group": "pastry",
+      "groupLabel": "Десерты",
+      "priceFrom": 120,
+      "volumes": [
+        {
+          "ml": 120,
+          "price": 120
+        },
+        {
+          "ml": 150,
+          "price": 150
+        }
+      ]
+    },
+    {
+      "id": "goryachee",
+      "name": "Горячее",
+      "group": "hot",
+      "groupLabel": "Еда",
+      "priceFrom": 370,
+      "kind": "hot"
+    },
+    {
+      "id": "zavtraki",
+      "name": "Завтраки",
+      "group": "hot",
+      "groupLabel": "Еда",
+      "priceFrom": 270,
+      "kind": "hot"
+    },
+    {
+      "id": "iriska",
+      "name": "Ириска",
+      "group": "pastry",
+      "groupLabel": "Десерты",
+      "priceFrom": 80
+    },
+    {
+      "id": "konfety_dabl_babl_v_assortimente",
+      "name": "Конфеты дабл бабл в ассортименте",
+      "group": "pastry",
+      "groupLabel": "Десерты",
+      "priceFrom": 70
+    },
+    {
+      "id": "kruassany",
+      "name": "Круассаны",
+      "group": "pastry",
+      "groupLabel": "Десерты",
+      "priceFrom": 250
+    },
+    {
+      "id": "orehi_kulek_v_assortimente",
+      "name": "Орехи \"кулёк\"в ассортименте",
+      "group": "food",
+      "groupLabel": "Еда",
+      "priceFrom": 200
+    },
+    {
+      "id": "pechene",
+      "name": "Печенье",
+      "group": "pastry",
+      "groupLabel": "Десерты",
+      "priceFrom": 150
+    },
+    {
+      "id": "rolly",
+      "name": "Роллы",
+      "group": "sandwich",
+      "groupLabel": "Еда",
+      "priceFrom": 300,
+      "kind": "sandwich"
+    },
+    {
+      "id": "salaty",
+      "name": "Салаты",
+      "group": "hot",
+      "groupLabel": "Еда",
+      "priceFrom": 320,
+      "kind": "hot"
+    },
+    {
+      "id": "sochnik",
+      "name": "Сочник",
+      "group": "pastry",
+      "groupLabel": "Десерты",
+      "priceFrom": 150
+    },
+    {
+      "id": "sendvichi",
+      "name": "Сэндвичи",
+      "group": "sandwich",
+      "groupLabel": "Еда",
+      "priceFrom": 300,
+      "kind": "sandwich"
+    },
+    {
+      "id": "trubochka_so_sguschenkoy",
+      "name": "Трубочка со сгущенкой",
+      "group": "pastry",
+      "groupLabel": "Десерты",
+      "priceFrom": 150
+    },
+    {
+      "id": "chiabatta",
+      "name": "Чиабатта",
+      "group": "sandwich",
+      "groupLabel": "Еда",
+      "priceFrom": 350,
+      "kind": "sandwich"
+    }
+  ]
+}
