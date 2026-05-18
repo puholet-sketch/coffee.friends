@@ -1,0 +1,16 @@
+{
+  "bot_username": "coffeefriends_orders_bot",
+  "group_chat_id": -1003739763407,
+  "topics": {
+    "general": null,
+    "floor_2": 3,
+    "floor_11": 4
+  },
+  "links": {
+    "bot": "https://t.me/coffeefriends_orders_bot",
+    "group_invite": "https://t.me/+VpuwDrvvsNY0YzQ6",
+    "topic_general": "https://t.me/c/3739763407/1",
+    "topic_floor_2": "https://t.me/c/3739763407/3",
+    "topic_floor_11": "https://t.me/c/3739763407/4"
+  }
+}
