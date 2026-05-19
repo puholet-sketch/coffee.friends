@@ -19,8 +19,12 @@
 
 | Файл | Назначение |
 |------|------------|
-| `assets/images/banner/coffee-friends-banner-infographic.png` | Основной баннер для сайта и печати |
-| `assets/images/banner/banner-a4.svg` | Вариант/верстка A4 |
+| `assets/images/banner/coffee-friends-banner-infographic.png` | Горизонтальный баннер для сайта |
+| `assets/images/banner/coffee-friends-banner-vertical.png` | **Целевой** вертикальный баннер (мастер, с рабочим QR сайта) |
+| `assets/images/banner/coffee-friends-banner-vertical-print.png` | То же для печати, 3072×2048 px |
+| `assets/images/banner/site-qr.png` | QR на сайт (золотой на тёмном) |
+| `assets/images/banner/coffee-friends-order-a5.png` | Листовка A5: заказ в Telegram + QR |
+| `assets/images/banner/banner-a4.svg` | Черновик A4 (устар.) |
 | `docs/banner/banner-a4-copy.md` | Тексты к A4 |
 | `docs/banner/approach.md` | Этот документ — чтобы следующие правки сохраняли стиль |
 
