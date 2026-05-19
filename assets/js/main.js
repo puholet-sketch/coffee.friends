@@ -17,6 +17,36 @@ const MENU_ICON_BY_ID = {
   seasonal: "smoothie"
 };
 
+const DRINK_GROUP_ORDER = ["coffee", "cold_coffee", "tea", "lemonade", "seasonal"];
+const DRINK_GROUP_LABELS = {
+  coffee: "Кофе",
+  cold_coffee: "Холодный кофе",
+  tea: "Чай и какао",
+  lemonade: "Лимонады и фреши",
+  seasonal: "Сезонные напитки",
+};
+const DRINK_GROUP_ICON = {
+  coffee: "espresso",
+  cold_coffee: "coldbrew",
+  tea: "tea",
+  lemonade: "tea",
+  seasonal: "smoothie",
+};
+
+const FOOD_GROUP_ORDER = ["sandwich", "hot", "pastry", "food"];
+const FOOD_GROUP_LABELS = {
+  sandwich: "Сэндвичи и роллы",
+  hot: "Горячее и завтраки",
+  pastry: "Сладкое и выпечка",
+  food: "Прочее",
+};
+const FOOD_GROUP_ICON = {
+  sandwich: "sandwich",
+  hot: "breakfast",
+  pastry: "pastry",
+  food: "pastry",
+};
+
 /** Основное меню напитков — iconId: компактная иконка в таблице */
 let drinksMenu = [
   { iconId: "espresso", name: "Эспрессо", detail: "30 мл", price: "от 180 ₽" },
@@ -32,6 +62,9 @@ let drinksMenu = [
 /**
  * Остальной ассортимент — та же таблица, что напитки. iconId — SVG как раньше.
  */
+let drinksMenuGroups = [];
+let assortmentGroups = [];
+
 let assortmentCategories = [
   { iconId: "pastry", title: "Выпечка и десерты", blurb: "Сладкое и снеки в витрине", price: "от 70 ₽" },
   { iconId: "sandwich", title: "Сэндвичи и готовая еда", blurb: "Сэндвичи, салаты, роллы и горячее", price: "от 270 ₽" },
@@ -63,22 +96,34 @@ async function loadMenuData() {
     const drinks = data.drinksNow || data.drinks;
     const food = data.preorderFood || data.categories;
     if (Array.isArray(drinks) && drinks.length) {
-      drinksMenu = drinks
-        .filter((row) => row.group === "coffee")
-        .map((row) => ({
-          iconId: MENU_ICON_BY_ID[row.id] || row.id || "espresso",
-          name: row.name,
-          detail: volumeDetail(row) || "—",
-          price: priceLabel(row)
-        }));
+      drinksMenuGroups = DRINK_GROUP_ORDER.map((groupKey) => ({
+        key: groupKey,
+        label: DRINK_GROUP_LABELS[groupKey] || groupKey,
+        rows: drinks
+          .filter((row) => row.group === groupKey)
+          .map((row) => ({
+            iconId: MENU_ICON_BY_ID[row.id] || DRINK_GROUP_ICON[groupKey] || "espresso",
+            name: row.name,
+            detail: volumeDetail(row) || "—",
+            price: priceLabel(row),
+          })),
+      })).filter((g) => g.rows.length);
+      drinksMenu = drinksMenuGroups.flatMap((g) => g.rows);
     }
     if (Array.isArray(food) && food.length) {
-      assortmentCategories = food.map((row) => ({
-        iconId: MENU_ICON_BY_ID[row.id] || MENU_ICON_BY_ID[row.kind] || "pastry",
-        title: row.name,
-        blurb: row.kind === "sandwich" ? "Уточните начинку в боте" : row.groupLabel || "",
-        price: priceLabel(row)
-      }));
+      assortmentGroups = FOOD_GROUP_ORDER.map((groupKey) => ({
+        key: groupKey,
+        label: FOOD_GROUP_LABELS[groupKey] || groupKey,
+        rows: food
+          .filter((row) => (row.kind || row.group) === groupKey)
+          .map((row) => ({
+            iconId: MENU_ICON_BY_ID[row.id] || FOOD_GROUP_ICON[groupKey] || "pastry",
+            title: row.name,
+            blurb: row.kind === "sandwich" ? "Уточните начинку в боте" : row.groupLabel || "",
+            price: priceLabel(row),
+          })),
+      })).filter((g) => g.rows.length);
+      assortmentCategories = assortmentGroups.flatMap((g) => g.rows);
     }
   } catch {
     /* офлайн / file:// — остаётся встроенное меню */
@@ -181,15 +226,27 @@ function renderDrinks() {
   const body = document.getElementById("drinksBody");
   if (!body) return;
 
-  body.innerHTML = drinksMenu
-    .map(
-      (row) => `<tr>
+  const groups = drinksMenuGroups.length
+    ? drinksMenuGroups
+    : [{ label: "", rows: drinksMenu }];
+
+  body.innerHTML = groups
+    .flatMap((group) => {
+      const head = group.label
+        ? `<tr class="drinks-table__group"><td colspan="4">${escapeHtml(group.label)}</td></tr>`
+        : "";
+      const rows = group.rows
+        .map(
+          (row) => `<tr>
         <td class="drinks-table__cell-icon"><span class="drinks-table__icon-wrap">${drinkIconMarkup(row.iconId)}</span></td>
         <td>${escapeHtml(row.name)}</td>
         <td class="drinks-table__col-detail">${escapeHtml(row.detail)}</td>
         <td>${escapeHtml(row.price)}</td>
       </tr>`
-    )
+        )
+        .join("");
+      return head + rows;
+    })
     .join("");
 }
 
@@ -197,15 +254,27 @@ function renderCategories() {
   const body = document.getElementById("categoryBody");
   if (!body) return;
 
-  body.innerHTML = assortmentCategories
-    .map(
-      (cat) => `<tr>
+  const groups = assortmentGroups.length
+    ? assortmentGroups
+    : [{ label: "", rows: assortmentCategories }];
+
+  body.innerHTML = groups
+    .flatMap((group) => {
+      const head = group.label
+        ? `<tr class="drinks-table__group"><td colspan="4">${escapeHtml(group.label)}</td></tr>`
+        : "";
+      const rows = group.rows
+        .map(
+          (cat) => `<tr>
         <td class="drinks-table__cell-icon"><span class="drinks-table__icon-wrap">${assortmentTableIcon(cat)}</span></td>
         <td>${escapeHtml(cat.title)}</td>
         <td class="drinks-table__col-detail">${escapeHtml(cat.blurb)}</td>
         <td>${escapeHtml(cat.price)}</td>
       </tr>`
-    )
+        )
+        .join("");
+      return head + rows;
+    })
     .join("");
 }
 
@@ -565,18 +634,25 @@ function renderGalleryPhotos(photos) {
     else other.push(p);
   }
 
-  const tile = (p) => {
-    const src = encodePath(p.src || p.path || "");
+  const tile = (p, eager = false) => {
+    const jpg = encodePath(p.src || p.path || "");
+    const webp = encodePath(p.webp || (p.src || "").replace(/\.jpe?g$/i, ".webp"));
     const alt = escapeAttr(p.alt || "CoffeeFriends");
+    const w = p.width || 800;
+    const h = p.height || 600;
+    const load = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" fetchpriority="low"';
     return `<figure class="gallery-tile">
-      <img src="${src}" alt="${alt}" loading="lazy" decoding="async" sizes="(min-width: 900px) 42vw, 92vw" width="800" height="600">
+      <picture>
+        <source type="image/webp" srcset="${webp}" />
+        <img src="${jpg}" alt="${alt}" ${load} decoding="async" sizes="(min-width: 900px) 42vw, 92vw" width="${w}" height="${h}">
+      </picture>
     </figure>`;
   };
 
   const column = (title, badgeClass, items, emptyText) => {
     const inner =
       items.length > 0
-        ? `<div class="gallery-masonry">${items.map(tile).join("")}</div>`
+        ? `<div class="gallery-masonry">${items.map((p, i) => tile(p, i === 0)).join("")}</div>`
         : `<p class="gallery-empty">${escapeHtml(emptyText)}</p>`;
     return `<div class="gallery-floor-col">
       <header class="gallery-floor-head">
@@ -607,7 +683,7 @@ async function loadGalleryManifest() {
   let loaded = false;
 
   try {
-    const res = await fetch(MANIFEST_URL, { cache: "no-store" });
+    const res = await fetch(MANIFEST_URL);
     if (res.ok) {
       const data = await res.json();
       if (Array.isArray(data.photos) && data.photos.length > 0) {
@@ -660,7 +736,7 @@ function whenGallerySectionReady(done) {
         schedule();
       }
     },
-    { rootMargin: "220px 0px", threshold: 0 }
+    { rootMargin: "120px 0px", threshold: 0.01 }
   );
   io.observe(el);
 }

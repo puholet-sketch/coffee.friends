@@ -6,10 +6,12 @@
     "start": "node bot/index.mjs",
     "qr": "node scripts/generate-qr.mjs",
     "qr:site": "node scripts/generate-site-qr.mjs",
-    "banner:print": "node scripts/composite-banner-qr.mjs"
+    "banner:print": "node scripts/composite-banner-qr.mjs",
+    "photos:optimize": "node scripts/optimize-gallery-photos.mjs"
   },
   "dependencies": {
     "nodemailer": "^7.0.3",
-    "qrcode": "^1.5.4"
+    "qrcode": "^1.5.4",
+    "sharp": "^0.34.5"
   }
 }
