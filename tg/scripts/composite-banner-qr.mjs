@@ -3,11 +3,30 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const sourcePath =
-  join(root, "assets/images/banner/coffee-friends-banner-vertical-source-v7.png");
-const qrPath = join(root, "assets/images/banner/site-qr.png");
-const masterPath = join(root, "assets/images/banner/coffee-friends-banner-vertical.png");
-const outPath = join(root, "assets/images/banner/coffee-friends-banner-vertical-print.png");
+const bannerRoot = join(root, "target banner");
+const dirs = { source: "source", qr: "site-qr", master: "archive", print: "print" };
+
+const variant = process.argv[2] || "dark";
+const profiles = {
+  dark: {
+    source: "coffee-friends-banner-vertical-source-v7.png",
+    qr: "site-qr.png",
+    master: "coffee-friends-banner-vertical.png",
+    print: "coffee-friends-banner-vertical-print.png",
+  },
+  light: {
+    source: "coffee-friends-banner-vertical-light-v7-source.png",
+    qr: "site-qr-light.png",
+    master: "coffee-friends-banner-vertical-light-v7.png",
+    print: "coffee-friends-banner-vertical-light-v7-print.png",
+  },
+};
+const profile = profiles[variant] ?? profiles.dark;
+
+const sourcePath = join(bannerRoot, dirs.source, profile.source);
+const qrPath = join(bannerRoot, dirs.qr, profile.qr);
+const masterPath = join(bannerRoot, dirs.master, profile.master);
+const outPath = join(bannerRoot, dirs.print, profile.print);
 const TARGET_WIDTH = 3072;
 
 const banner = sharp(sourcePath);
@@ -40,6 +59,7 @@ await img.toFile(outPath);
 
 const masterMeta = await sharp(masterPath).metadata();
 const outMeta = await sharp(outPath).metadata();
+console.log("Variant:", variant);
 console.log("Source:", sourcePath);
 console.log(`QR @ ${left},${top} size ${qrSize}`);
 console.log("Master:", `${masterMeta.width}x${masterMeta.height}`);

@@ -12,3 +12,9 @@ tg/node_modules/
 tg/.poll-offset
 tg/data/
 tg/.env
+
+# Local print masters (>100MB; keep on disk, not in GitHub)
+target banner/archive/coffee-friends-banner-vertical-light-marketing-600x1600mm-150dpi-cmyk.pdf
+target banner/archive/coffee-friends-banner-vertical-light-marketing-600x1600mm-150dpi-cmyk.tiff
+target banner/print/coffee-friends-banner-light-marketing-600x1600mm-150dpi-cmyk.pdf
+target banner/print/coffee-friends-banner-light-marketing-600x1600mm-150dpi-cmyk.tiff

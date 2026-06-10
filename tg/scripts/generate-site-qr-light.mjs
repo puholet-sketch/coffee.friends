@@ -8,25 +8,12 @@ const url = "https://puholet-sketch.github.io/coffee.friends/";
 const outDir = join(root, "target banner", "site-qr");
 if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 
-const colors = {
-  dark: "#f0c84a",
-  light: "#121018",
-};
-
-await QRCode.toFile(join(outDir, "site-qr.png"), url, {
+await QRCode.toFile(join(outDir, "site-qr-light.png"), url, {
   type: "png",
   width: 900,
   margin: 2,
   errorCorrectionLevel: "H",
-  color: colors,
+  color: { dark: "#1e2a44", light: "#ffffff" },
 });
 
-await QRCode.toFile(join(outDir, "site-qr.svg"), url, {
-  type: "svg",
-  margin: 2,
-  errorCorrectionLevel: "H",
-  color: colors,
-});
-
-console.log("Site QR:", join(outDir, "site-qr.png"));
-console.log(url);
+console.log("Light banner QR:", join(outDir, "site-qr-light.png"));

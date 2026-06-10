@@ -7,6 +7,9 @@
     "qr": "node scripts/generate-qr.mjs",
     "qr:site": "node scripts/generate-site-qr.mjs",
     "banner:print": "node scripts/composite-banner-qr.mjs",
+    "banner:print:light": "node scripts/generate-site-qr-light.mjs && node scripts/composite-banner-qr.mjs light",
+    "banner:print:light-marketing": "node scripts/banner-print-light-marketing.mjs",
+    "qr:site:light": "node scripts/generate-site-qr-light.mjs",
     "photos:optimize": "node scripts/optimize-gallery-photos.mjs"
   },
   "dependencies": {

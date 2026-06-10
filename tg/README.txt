@@ -36,6 +36,8 @@
    npm install
    npm start
    (компьютер + VPN, пока бот не на сервере)
+   Бесплатно без карты: docs/deploy/termux-android.md (Android + Termux)
+   Обзор вариантов: docs/deploy/free-no-card.md
 
 7) Почта: ошибки бота и пожелания (/feedback)
    Скопируйте tg/.env.example → tg/.env

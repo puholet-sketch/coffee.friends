@@ -32,6 +32,6 @@
 | `target banner/site-qr/site-qr-light.png` | QR для светлых баннеров |
 | `target banner/archive/coffee-friends-order-a5.png` | A5 Telegram |
 | `target banner/docs/` | Тексты; `print-light-marketing.md` — 600×1600 mm |
-| `docs/banner/approach.md` | Этот документ |
+| `docs/banner/approach.md` | Копия этого документа в репозитории |
 
 При смене макета обновите файлы в `target banner/` и при необходимости `index.html`.

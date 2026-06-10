@@ -14,12 +14,12 @@
   <meta property="og:url" content="https://puholet-sketch.github.io/coffee.friends/">
   <meta property="og:title" content="CoffeeFriends — кофе на 2 и 11 этажах | БЦ Китеж">
   <meta property="og:description" content="CoffeeFriends: кофе, завтраки и дружелюбная атмосфера в БЦ Китеж, Москва. 2 и 11 этаж.">
-  <meta property="og:image" content="https://puholet-sketch.github.io/coffee.friends/assets/images/banner/coffee-friends-banner-infographic.png">
+  <meta property="og:image" content="https://puholet-sketch.github.io/coffee.friends/target%20banner/archive/coffee-friends-banner-infographic.png">
   <meta property="og:locale" content="ru_RU">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CoffeeFriends — кофе на 2 и 11 этажах | БЦ Китеж">
   <meta name="twitter:description" content="CoffeeFriends: кофе, завтраки и дружелюбная атмосфера в БЦ Китеж, Москва. 2 и 11 этаж.">
-  <meta name="twitter:image" content="https://puholet-sketch.github.io/coffee.friends/assets/images/banner/coffee-friends-banner-infographic.png">
+  <meta name="twitter:image" content="https://puholet-sketch.github.io/coffee.friends/target%20banner/archive/coffee-friends-banner-infographic.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@
         <h1 class="type-hero">Кофе, который <span class="text-accent-pink">собирает</span> людей<br>на <span class="text-accent-gold">2</span> и <span class="text-accent-gold">11</span> этажах</h1>
         <div class="hero-body">
           <div class="hero-cta">
-            <a class="btn btn-primary" href="#order">Заказ в Telegram</a>
+            <a class="btn btn-primary" href="#order">Telegram-заказ <span class="btn-tag">скоро</span></a>
             <a class="btn btn-ghost" href="#drinks">Меню напитков</a>
             <a class="btn btn-ghost" href="#feedback">Пожелания</a>
           </div>
@@ -97,8 +97,8 @@
       <div class="route-layout">
         <figure class="route-banner neon-frame" aria-label="Инфографика маршрута к кофейне">
           <img
-            src="assets/images/banner/coffee-friends-banner-infographic.png"
-            srcset="assets/images/banner/coffee-friends-banner-infographic.png 1920w"
+            src="target%20banner/archive/coffee-friends-banner-infographic.png"
+            srcset="target%20banner/archive/coffee-friends-banner-infographic.png 1920w"
             sizes="(min-width: 980px) min(92vw, 1360px), 100vw"
             width="1920"
             height="1080"
@@ -157,42 +157,50 @@
     <section class="section section-order" id="order">
       <div class="section-head">
         <p class="eyebrow">Заказ</p>
-        <h2>Заказ и предзаказ на дату в Telegram</h2>
-        <p class="lead">
-          В боте два режима: <strong>заказ сейчас</strong> (напитки, еда, ~5–10 минут) и <strong>предзаказ на дату</strong> (еда и сладкое на завтра или выбранную дату). Бариста отвечают на заказ в группе — вам приходит статус («в работе», «готово» и т.д.).
+        <h2>Заказ в Telegram</h2>
+        <div class="order-dev-notice surface-card" role="status">
+          <p class="order-dev-notice__title">Скоро заработает</p>
+          <p class="order-dev-notice__text">
+            Онлайн-заказ и предзаказ через бота сейчас <strong>в разработке</strong> — не открывайте бота для заказа, он ещё не обслуживает гостей.
+            Пока заказ только <strong>у стойки</strong> на 2 и 11 этажах. Вопросы и пожелания — <a href="#feedback">на почту</a>.
+          </p>
+        </div>
+        <p class="lead order-lead-muted">
+          Ниже — как будет устроено, когда бот запустим (ориентир: ближайшие недели).
         </p>
       </div>
       <div class="order-layout">
         <div class="order-copy">
-          <ol class="order-steps">
-            <li>Откройте бота <strong>@coffeefriends_orders_bot</strong> (ссылка или QR).</li>
-            <li>Выберите <strong>«Заказ сейчас»</strong> или <strong>«Предзаказ на дату»</strong>, этаж <strong>2</strong> / <strong>11</strong>, имя для стойки.</li>
+          <p class="order-steps-label">Как будет работать</p>
+          <ol class="order-steps order-steps--preview">
+            <li>Откроете бота <strong>@coffeefriends_orders_bot</strong> (ссылка или QR).</li>
+            <li>Выберете <strong>«Заказ сейчас»</strong> или <strong>«Предзаказ на дату»</strong>, этаж <strong>2</strong> / <strong>11</strong>, имя для стойки.</li>
             <li>Для напитков — объём <strong>250 / 350 / 450 мл</strong> (как в прайсе). Для сэндвичей — начинка, количество, гриль. Для горячего — название блюда текстом.</li>
-            <li>Проверьте корзину и <strong>стоимость заказа</strong> → <strong>«Отправить бариста»</strong>.</li>
+            <li>Проверите корзину и <strong>стоимость заказа</strong> → <strong>«Отправить бариста»</strong>.</li>
             <li>Бариста ответит по готовности — вам придёт уведомление в боте. <strong>Оплата у стойки.</strong></li>
           </ol>
           <div class="order-cta">
-            <a
-              class="btn btn-primary"
-              href="https://t.me/coffeefriends_orders_bot?start=site"
-              rel="noopener noreferrer"
-              target="_blank"
-            >Открыть бота в Telegram</a>
+            <button type="button" class="btn btn-primary btn-disabled" disabled aria-disabled="true">
+              Бот в разработке
+            </button>
+            <a class="btn btn-ghost" href="#route">Как пройти к стойке</a>
             <a class="btn btn-ghost" href="#drinks">Смотреть меню на сайте</a>
           </div>
           <p class="order-note">Для обратной связи без заказа — <a href="#feedback">почта</a>.</p>
         </div>
-        <aside class="surface-card order-qr-card" aria-label="QR-код бота">
+        <aside class="surface-card order-qr-card order-qr-card--soon" aria-label="QR-код бота — появится после запуска">
+          <span class="order-soon-badge">Скоро</span>
           <img
             src="assets/images/order/bot-qr.png"
             width="400"
             height="400"
-            alt="QR-код: открыть бота CoffeeFriends Заказы в Telegram"
+            alt=""
             loading="lazy"
             decoding="async"
+            aria-hidden="true"
           >
-          <p class="order-qr-caption">Наведите камеру телефона — откроется бот</p>
-          <p class="order-qr-link"><a href="https://t.me/coffeefriends_orders_bot">t.me/coffeefriends_orders_bot</a></p>
+          <p class="order-qr-caption">QR и бот появятся здесь, когда сервис запустим</p>
+          <p class="order-qr-link"><span class="order-qr-link-muted">t.me/coffeefriends_orders_bot</span></p>
         </aside>
       </div>
     </section>
