@@ -37,10 +37,13 @@
         <a href="#drinks">Меню</a>
         <a href="#order">Заказ</a>
         <a href="#more">Ассортимент</a>
+        <a href="#autumn">Осень</a>
         <a href="#gallery">Фото</a>
         <a href="#feedback">Написать</a>
       </div>
     </nav>
+
+    <div class="promo-fx promo-fx--hero" id="heroLeaves" aria-hidden="true"></div>
 
     <div class="hero-inner">
       <div class="hero-copy">
@@ -60,6 +63,18 @@
   </header>
 
   <main class="main">
+    <section class="section section-autumn-promo" id="autumn">
+      <div class="autumn-promo surface-card" id="autumnPromo">
+        <div class="promo-fx" id="promoLeaves" aria-hidden="true"></div>
+        <div class="autumn-promo__body">
+          <p class="autumn-promo__eyebrow">Всю осень</p>
+          <h2 class="autumn-promo__title">Скидосы всю осень!</h2>
+          <p class="promo__offer"><span class="promo__pct" id="promoPctBoom">20%</span> на комбо</p>
+          <p class="autumn-promo__lead">Подробности у бариста · 2 и 11 этаж, БЦ Китеж</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section section-hours" id="hours">
       <div class="section-head section-head--tight">
         <p class="eyebrow">Режим</p>
@@ -280,112 +295,27 @@
       </div>
     </section>
 
-    <section class="section section-jokes section--tail" id="jokes">
+    <section class="section section-poems section--tail" id="poems">
       <div class="section-head">
-        <p class="eyebrow">Юмор</p>
-        <h2>Шуточки про кофе</h2>
-        <p class="lead">Про офис, встречи и кофе-брейки — и пару слов со стойки.</p>
+        <p class="eyebrow">Осень</p>
+        <h2>Осенние стихи</h2>
+        <p class="lead">Классика и короткие строки CoffeeFriends — под листопад и горячую чашку.</p>
       </div>
-      <div class="jokes-toolbar">
-        <div class="jokes-controls" aria-live="polite">
-          <button type="button" class="jokes-next" id="jokesPrevBtn" aria-label="Показать предыдущую порцию шуток">
+      <div class="poems-toolbar">
+        <div class="poems-controls" aria-live="polite">
+          <button type="button" class="poems-next" id="poemsPrevBtn" aria-label="Показать предыдущую порцию стихов">
             <span aria-hidden="true">←</span>
           </button>
-          <span class="jokes-page-indicator" id="jokesPageIndicator" aria-live="polite"></span>
-          <button type="button" class="jokes-next" id="jokesNextBtn" aria-label="Показать следующую порцию шуток">
+          <span class="poems-page-indicator" id="poemsPageIndicator" aria-live="polite"></span>
+          <button type="button" class="poems-next" id="poemsNextBtn" aria-label="Показать следующую порцию стихов">
             <span aria-hidden="true">→</span>
           </button>
         </div>
-        <button type="button" class="btn btn-ghost jokes-show-all" id="jokesShowAllBtn" aria-expanded="false">
+        <button type="button" class="btn btn-ghost poems-show-all" id="poemsShowAllBtn" aria-expanded="false">
           Показать все
         </button>
       </div>
-      <div class="jokes-grid">
-        <article class="surface-card joke-card">
-          <p>Дедлайн горит — а раф ещё держит температуру.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Капучино без пенки — как понедельник без кофе: теоретически возможно.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Латте знает всё о молоке. Вы — о жизни. Договорились?</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Эспрессо: мало слов, много смысла — как хороший статус в чате.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Кофе-брейк — единственная встреча, куда все приходят вовремя.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Говорят, баг уходит после кофе. Проверим на втором рафе.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Планёрка в девять — это не «рано». Это когда вчерашний вы ещё не успел допить вчерашний кофе.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Дейлик на пятнадцать минут и кружка на тридцать — оба растут, если не поставить границу.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>ИТ-шник без кофе — как код без точки с запятой: где-то обязательно сломается, просто не сразу.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Когда в чате «без перерыва до конца дня», второй кофе заказывают уже с едва заметной улыбкой — почти лечебный ритуал.</p>
-        </article>
-        <article class="surface-card joke-card joke-card--so">
-          <p><span class="joke-card__label">Со стойки</span>Если заказ звучит как название эпика в Jira — мы всё равно сделаем раф. Без подзадач.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>«Блокер» снимается двумя способами: апдейтом в чате или двойным эспрессо. Логи пока молчат — зато вы уже бодрее.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Планирование спринта без кофе — спорный PR: формально можно, но на ревью вас разнесут.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Кофе на дейлике — единственный легальный фоновый шум, за который с камеры не выключат.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Утренний кофе не делает из вас супергероя — зато объясняет, зачем вы вообще добрались до офиса.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Confluence написан кровью, потом и кофе. В основном кофе.</p>
-        </article>
-        <article class="surface-card joke-card joke-card--so">
-          <p><span class="joke-card__label">Со стойки</span>Сложные слова в заказе не обязательны. «Как всегда» — тоже полноценный язык.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Stand-up длится ровно столько, сколько остывает латте. Совпадение? Инвестируем в термостаканы.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Когда в календаре всё цветом — красный, жёлтый, зелёный — у стойки хотя бы один цвет стабилен: корица в капучино.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>«Это быстрый вопрос» на слот в пятнадцать минут — классика. «Быстрый раф» — тоже. Один из двух чаще правдивее.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Scrum Master смотрит на burn-down. Бариста — на остаток зёрен. Оба чувствуют конец спринта.</p>
-        </article>
-        <article class="surface-card joke-card joke-card--so">
-          <p><span class="joke-card__label">Со стойки</span>Мердж в пятницу вы переживёте сами. Мы лишь обеспечим моральную и молочную поддержку.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>ИТ: «У меня всё зависло». Бариста: «Секунду, дожмём шот». Разные контексты — один уровень эмпатии.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Ретро без кофе — это не ретро, это постмортем настроения. Закон офисной физики.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Когда в чате пишут «созвонимся на пять минут», берут не кружку, а кувшин воды. Опыт не спорит с реальностью.</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Кофе на планёрке не решает задачи. Но делает терпимым человека, который говорит «давайте синхронизируемся» в третий раз.</p>
-        </article>
-        <article class="surface-card joke-card joke-card--so">
-          <p><span class="joke-card__label">Со стойки</span>Если вы объясняете заказ как архитектуру микросервисов — ок. Главное, чтобы в конце было «с сиропом или без».</p>
-        </article>
-        <article class="surface-card joke-card">
-          <p>Демо для заказчика и первая чашка после обеда — одинаковый адреналин. Разница только в том, кто задаёт вопросы.</p>
-        </article>
-      </div>
+      <div class="poems-grid" id="poemsGrid"></div>
     </section>
   </main>
 

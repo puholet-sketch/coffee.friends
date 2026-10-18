@@ -741,109 +741,239 @@ function whenGallerySectionReady(done) {
   io.observe(el);
 }
 
-function initJokesPager() {
-  const grid = document.querySelector(".jokes-grid");
-  const prevBtn = document.getElementById("jokesPrevBtn");
-  const nextBtn = document.getElementById("jokesNextBtn");
-  const indicator = document.getElementById("jokesPageIndicator");
-  const toggleAllBtn = document.getElementById("jokesShowAllBtn");
+function leafHtml(count = 12) {
+  return Array.from({ length: count }, (_, i) => {
+    const tone = (i % 4) + 1;
+    const delay = ((i * 0.55) % 4.8).toFixed(2);
+    const duration = (6.5 + (i % 4) * 1.2).toFixed(1);
+    const left = (6 + (i * 7.5) % 88).toFixed(1);
+    const drift = ((i % 2 === 0 ? 1 : -1) * (20 + (i % 4) * 14)).toFixed(0);
+    const size = (15 + (i % 4) * 4).toFixed(0);
+    const spin = (i % 2 === 0 ? 1 : -1) * (300 + i * 35);
+    return `<i class="leaf leaf--${tone}" style="left:${left}%;--d:${delay}s;--t:${duration}s;--x:${drift}px;--s:${size}px;--r:${spin}deg" aria-hidden="true"></i>`;
+  }).join("");
+}
+
+function syncLeafFallDistance(host) {
+  if (!host) return;
+  const h = Math.max(host.clientHeight || 0, 420);
+  host.style.setProperty("--fall", `${h + 80}px`);
+}
+
+function initAutumnLeaves() {
+  const hero = document.getElementById("heroLeaves");
+  const promo = document.getElementById("promoLeaves");
+  const promoCard = document.getElementById("autumnPromo");
+  if (hero) {
+    hero.innerHTML = leafHtml(10);
+    syncLeafFallDistance(hero.closest(".hero") || hero);
+  }
+  if (promo) {
+    promo.innerHTML = leafHtml(14);
+    syncLeafFallDistance(promoCard || promo);
+  }
+  window.addEventListener("resize", () => {
+    if (hero) syncLeafFallDistance(hero.closest(".hero") || hero);
+    if (promo) syncLeafFallDistance(promoCard || promo);
+  });
+}
+
+const PROMO_PCT_CYCLE_MS = 900;
+let promoPctRaf = 0;
+
+function stopPromoPctBoom() {
+  if (promoPctRaf) {
+    cancelAnimationFrame(promoPctRaf);
+    promoPctRaf = 0;
+  }
+}
+
+/** JS boom-boom — как в цифровом меню (двойной удар + ghost). */
+function startPromoPctBoom() {
+  stopPromoPctBoom();
+  const el = document.getElementById("promoPctBoom");
+  if (!el) return;
+
+  el.classList.add("promo__pct--js");
+  let ghost = el.querySelector(".promo__pct-ghost");
+  if (!ghost) {
+    ghost = document.createElement("span");
+    ghost.className = "promo__pct-ghost";
+    ghost.setAttribute("aria-hidden", "true");
+    ghost.textContent = "20%";
+    el.appendChild(ghost);
+  }
+
+  const t0 = performance.now();
+
+  function beat(p) {
+    let scale = 1;
+    let glow = 0;
+    let ghostOp = 0;
+    let ghostScale = 1;
+    if (p < 0.12) {
+      const u = p / 0.12;
+      const s = Math.sin(u * Math.PI);
+      scale = 1 + 0.16 * s;
+      glow = s;
+      ghostOp = 0.9 * s;
+      ghostScale = 1 + 0.28 * s;
+    } else if (p < 0.22) {
+      const u = (p - 0.12) / 0.1;
+      scale = 1.16 - 0.23 * u;
+      glow = 1 - u;
+      ghostOp = (1 - u) * 0.5;
+      ghostScale = 1.28 + 0.22 * u;
+    } else if (p < 0.38) {
+      const u = (p - 0.22) / 0.16;
+      const s = Math.sin(u * Math.PI);
+      scale = 0.93 + 0.19 * s;
+      glow = 0.85 * s;
+      ghostOp = 0.75 * s;
+      ghostScale = 1 + 0.22 * s;
+    } else if (p < 0.5) {
+      const u = (p - 0.38) / 0.12;
+      scale = 1;
+      glow = 0.15 * (1 - u);
+      ghostOp = 0;
+      ghostScale = 1.2;
+    }
+    return { scale, glow, ghostOp, ghostScale };
+  }
+
+  function tick(now) {
+    const p = ((now - t0) % PROMO_PCT_CYCLE_MS) / PROMO_PCT_CYCLE_MS;
+    const { scale, glow, ghostOp, ghostScale } = beat(p);
+    el.style.transform = `scale(${scale.toFixed(4)})`;
+    el.style.filter = `brightness(${(1 + glow * 0.22).toFixed(3)})`;
+    el.style.textShadow =
+      glow > 0.04
+        ? `0 0 ${(4 + glow * 14).toFixed(1)}px rgba(255,255,255,${(0.5 + glow * 0.45).toFixed(2)}),` +
+          `0 0 ${(12 + glow * 22).toFixed(1)}px rgba(192,0,0,${(0.35 + glow * 0.5).toFixed(2)}),` +
+          `0 0 ${(28 + glow * 24).toFixed(1)}px rgba(251,90,90,${(glow * 0.55).toFixed(2)})`
+        : "none";
+    ghost.style.opacity = String(ghostOp.toFixed(3));
+    ghost.style.transform = `scale(${ghostScale.toFixed(4)})`;
+    promoPctRaf = requestAnimationFrame(tick);
+  }
+
+  promoPctRaf = requestAnimationFrame(tick);
+}
+
+function initPoemsPager() {
+  const grid = document.getElementById("poemsGrid");
+  const prevBtn = document.getElementById("poemsPrevBtn");
+  const nextBtn = document.getElementById("poemsNextBtn");
+  const indicator = document.getElementById("poemsPageIndicator");
+  const toggleAllBtn = document.getElementById("poemsShowAllBtn");
   if (!grid || !nextBtn || !prevBtn || !toggleAllBtn) return;
 
-  // Все шутки должны иметь категорию-бейдж в едином формате.
-  Array.from(grid.querySelectorAll(".joke-card")).forEach((card) => {
-    const p = card.querySelector("p");
-    if (!p) return;
-    if (p.querySelector(".joke-card__label")) return;
-    const label = document.createElement("span");
-    label.className = "joke-card__label";
-    label.textContent = card.classList.contains("joke-card--so") ? "Со стойки" : "Из офиса";
-    p.prepend(label);
-  });
+  fetch("assets/data/poems.json")
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error("poems"))))
+    .then((data) => {
+      const classic = Array.isArray(data.classic) ? data.classic : [];
+      const cf = Array.isArray(data.coffeeFriends) ? data.coffeeFriends : [];
+      const poems = [
+        ...classic.map((p) => ({ ...p, kind: "classic" })),
+        ...cf.map((p) => ({ ...p, kind: "cf" })),
+      ];
+      if (!poems.length) return;
 
-  const allCards = Array.from(grid.querySelectorAll(".joke-card"));
-  if (allCards.length === 0) return;
+      grid.innerHTML = poems
+        .map((poem) => {
+          const lines = (poem.lines || []).map((line) => `<p>${escapeHtml(line)}</p>`).join("");
+          const isCf = poem.kind === "cf";
+          const label = isCf ? "CoffeeFriends" : "Классика";
+          return `
+            <article class="surface-card poem-card${isCf ? " poem-card--cf" : ""}">
+              <span class="poem-card__label">${label}</span>
+              <blockquote class="poem-card__text">${lines}</blockquote>
+              <p class="poem-card__author">— ${escapeHtml(poem.author || "")}</p>
+            </article>`;
+        })
+        .join("");
 
-  const fromCounter = allCards.filter((card) => card.classList.contains("joke-card--so"));
-  const regular = allCards.filter((card) => !card.classList.contains("joke-card--so"));
-  const pageSize = 3;
-  const pageCount = Math.max(
-    1,
-    Math.ceil(regular.length / pageSize),
-    Math.ceil(fromCounter.length / pageSize)
-  );
+      const allCards = Array.from(grid.querySelectorAll(".poem-card"));
+      const classicCards = allCards.filter((c) => !c.classList.contains("poem-card--cf"));
+      const cfCards = allCards.filter((c) => c.classList.contains("poem-card--cf"));
+      const pageSize = 3;
+      const pageCount = Math.max(
+        1,
+        Math.ceil(classicCards.length / pageSize),
+        Math.ceil(cfCards.length / pageSize)
+      );
 
-  let page = 0;
-  let expanded = false;
+      let page = 0;
+      let expanded = false;
 
-  function setPagerVisibility() {
-    if (expanded) {
-      prevBtn.hidden = true;
-      nextBtn.hidden = true;
-      return;
-    }
-    const hidePager = pageCount <= 1;
-    prevBtn.hidden = hidePager;
-    nextBtn.hidden = hidePager;
-  }
+      function setPagerVisibility() {
+        if (expanded) {
+          prevBtn.hidden = true;
+          nextBtn.hidden = true;
+          return;
+        }
+        const hidePager = pageCount <= 1;
+        prevBtn.hidden = hidePager;
+        nextBtn.hidden = hidePager;
+      }
 
-  function sliceFor(arr) {
-    if (arr.length === 0) return [];
-    const start = (page * pageSize) % arr.length;
-    return arr.slice(start, start + pageSize);
-  }
+      function sliceFor(arr) {
+        if (arr.length === 0) return [];
+        const start = (page * pageSize) % arr.length;
+        return arr.slice(start, start + pageSize);
+      }
 
-  function renderPage() {
-    if (expanded) return;
+      function renderPage() {
+        if (expanded) return;
+        const classicSlice = new Set(sliceFor(classicCards));
+        const cfSlice = new Set(sliceFor(cfCards));
+        allCards.forEach((card) => {
+          const visible = card.classList.contains("poem-card--cf")
+            ? cfSlice.has(card)
+            : classicSlice.has(card);
+          card.classList.toggle("is-hidden", !visible);
+        });
+        const pageLabel = `Порция стихов ${page + 1} из ${pageCount}`;
+        nextBtn.setAttribute("aria-label", `Следующая, ${pageLabel}`);
+        prevBtn.setAttribute("aria-label", `Предыдущая, ${pageLabel}`);
+        if (indicator) indicator.textContent = `${page + 1} / ${pageCount}`;
+        setPagerVisibility();
+      }
 
-    const regularSlice = new Set(sliceFor(regular));
-    const soSlice = new Set(sliceFor(fromCounter));
+      prevBtn.addEventListener("click", () => {
+        if (expanded) return;
+        page = (page - 1 + pageCount) % pageCount;
+        renderPage();
+      });
 
-    allCards.forEach((card) => {
-      const visible = card.classList.contains("joke-card--so")
-        ? soSlice.has(card)
-        : regularSlice.has(card);
-      card.classList.toggle("is-hidden", !visible);
-    });
+      nextBtn.addEventListener("click", () => {
+        if (expanded) return;
+        page = (page + 1) % pageCount;
+        renderPage();
+      });
 
-    const pageLabel = `Порция шуток ${page + 1} из ${pageCount}`;
-    nextBtn.setAttribute("aria-label", `Следующая, ${pageLabel}`);
-    prevBtn.setAttribute("aria-label", `Предыдущая, ${pageLabel}`);
-    if (indicator) {
-      indicator.textContent = `${page + 1} / ${pageCount}`;
-    }
-    setPagerVisibility();
-  }
+      toggleAllBtn.addEventListener("click", () => {
+        expanded = !expanded;
+        toggleAllBtn.setAttribute("aria-expanded", expanded ? "true" : "false");
+        grid.classList.toggle("poems-grid--expanded", expanded);
+        if (expanded) {
+          allCards.forEach((card) => card.classList.remove("is-hidden"));
+          prevBtn.hidden = true;
+          nextBtn.hidden = true;
+          if (indicator) indicator.textContent = `Все · ${allCards.length}`;
+          toggleAllBtn.textContent = "Свернуть";
+        } else {
+          toggleAllBtn.textContent = "Показать все";
+          renderPage();
+        }
+      });
 
-  prevBtn.addEventListener("click", () => {
-    if (expanded) return;
-    page = (page - 1 + pageCount) % pageCount;
-    renderPage();
-  });
-
-  nextBtn.addEventListener("click", () => {
-    if (expanded) return;
-    page = (page + 1) % pageCount;
-    renderPage();
-  });
-
-  toggleAllBtn.addEventListener("click", () => {
-    expanded = !expanded;
-    toggleAllBtn.setAttribute("aria-expanded", expanded ? "true" : "false");
-    grid.classList.toggle("jokes-grid--expanded", expanded);
-
-    if (expanded) {
-      allCards.forEach((card) => card.classList.remove("is-hidden"));
-      prevBtn.hidden = true;
-      nextBtn.hidden = true;
-      if (indicator) indicator.textContent = `Все · ${allCards.length}`;
-      toggleAllBtn.textContent = "Свернуть";
-    } else {
-      toggleAllBtn.textContent = "Показать все";
       renderPage();
-    }
-  });
-
-  renderPage();
+    })
+    .catch(() => {
+      grid.innerHTML =
+        '<p class="lead">Стихи временно недоступны — загляните к нам на стойку.</p>';
+    });
 }
 
 loadMenuData().then(() => {
@@ -854,4 +984,6 @@ whenGallerySectionReady(() => {
   loadGalleryManifest();
 });
 loadCoffeeCalendar();
-initJokesPager();
+initAutumnLeaves();
+startPromoPctBoom();
+initPoemsPager();
