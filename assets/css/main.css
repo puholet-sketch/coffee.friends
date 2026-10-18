@@ -1065,7 +1065,21 @@ strong {
   pointer-events: none;
 }
 
-.promo-fx--hero {
+/* Лёгкий листопад на весь сайт — поверх контента, клики не ловит */
+.promo-fx--site {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.promo-fx--site .leaf {
+  filter: saturate(0.92) brightness(1.04);
+  animation-name: leaf-drop-soft;
+}
+
+.autumn-promo .promo-fx {
   z-index: 0;
 }
 
@@ -1117,6 +1131,23 @@ strong {
   100% {
     opacity: 0.2;
     transform: translate3d(var(--x, 24px), var(--fall, 640px), 0) rotate(var(--r, 360deg));
+  }
+}
+
+@keyframes leaf-drop-soft {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  8% {
+    opacity: 0.72;
+  }
+  80% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0.12;
+    transform: translate3d(var(--x, 24px), var(--fall, 900px), 0) rotate(var(--r, 360deg));
   }
 }
 

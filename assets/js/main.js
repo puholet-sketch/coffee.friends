@@ -741,39 +741,45 @@ function whenGallerySectionReady(done) {
   io.observe(el);
 }
 
-function leafHtml(count = 12) {
+function leafHtml(count = 12, { soft = false } = {}) {
   return Array.from({ length: count }, (_, i) => {
     const tone = (i % 4) + 1;
     const delay = ((i * 0.45) % 5.2).toFixed(2);
-    const duration = (5.8 + (i % 5) * 1.1).toFixed(1);
+    const duration = (soft ? 7.2 : 5.8) + (i % 5) * (soft ? 1.35 : 1.1);
     const left = (4 + (i * 7.1) % 92).toFixed(1);
     const drift = ((i % 2 === 0 ? 1 : -1) * (18 + (i % 5) * 12)).toFixed(0);
-    const size = (18 + (i % 5) * 5).toFixed(0);
+    const size = ((soft ? 14 : 18) + (i % 5) * (soft ? 4 : 5)).toFixed(0);
     const spin = (i % 2 === 0 ? 1 : -1) * (280 + i * 32);
-    return `<i class="leaf leaf--${tone}" style="left:${left}%;--d:${delay}s;--t:${duration}s;--x:${drift}px;--s:${size}px;--r:${spin}deg" aria-hidden="true"></i>`;
+    const softClass = soft ? " leaf--soft" : "";
+    return `<i class="leaf leaf--${tone}${softClass}" style="left:${left}%;--d:${delay}s;--t:${duration.toFixed(1)}s;--x:${drift}px;--s:${size}px;--r:${spin}deg" aria-hidden="true"></i>`;
   }).join("");
 }
 
 function syncLeafFallDistance(fx) {
   if (!fx) return;
-  const host = fx.closest(".hero, .autumn-promo") || fx;
-  const h = Math.max(host.clientHeight || 0, fx.clientHeight || 0, 360);
+  const host = fx.closest(".autumn-promo") || fx;
+  const h = Math.max(
+    host.clientHeight || 0,
+    fx.clientHeight || 0,
+    fx.classList.contains("promo-fx--site") ? window.innerHeight : 360
+  );
   fx.style.setProperty("--fall", `${h + 60}px`);
 }
 
 function initAutumnLeaves() {
-  const hero = document.getElementById("heroLeaves");
+  const site = document.getElementById("siteLeaves");
   const promo = document.getElementById("promoLeaves");
-  if (hero) {
-    hero.innerHTML = leafHtml(16);
-    syncLeafFallDistance(hero);
+  // Весь сайт — тише; блок скидки — плотнее
+  if (site) {
+    site.innerHTML = leafHtml(14, { soft: true });
+    syncLeafFallDistance(site);
   }
   if (promo) {
-    promo.innerHTML = leafHtml(18);
+    promo.innerHTML = leafHtml(16);
     syncLeafFallDistance(promo);
   }
   const syncAll = () => {
-    if (hero) syncLeafFallDistance(hero);
+    if (site) syncLeafFallDistance(site);
     if (promo) syncLeafFallDistance(promo);
   };
   window.addEventListener("resize", syncAll);
