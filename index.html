@@ -47,7 +47,7 @@
         <h1 class="type-hero">Кофе, который <span class="text-accent-pink">собирает</span> людей<br>на <span class="text-accent-gold">2</span> и <span class="text-accent-gold">11</span> этажах</h1>
         <div class="hero-body">
           <div class="hero-cta">
-            <a class="btn btn-primary" href="#order">Telegram-заказ <span class="btn-tag">скоро</span></a>
+            <a class="btn btn-primary" href="#order">Telegram-заказ</a>
             <a class="btn btn-ghost" href="#drinks">Меню напитков</a>
             <a class="btn btn-ghost" href="#feedback">Пожелания</a>
           </div>
@@ -158,49 +158,44 @@
       <div class="section-head">
         <p class="eyebrow">Заказ</p>
         <h2>Заказ в Telegram</h2>
-        <div class="order-dev-notice surface-card" role="status">
-          <p class="order-dev-notice__title">Скоро заработает</p>
-          <p class="order-dev-notice__text">
-            Онлайн-заказ и предзаказ через бота сейчас <strong>в разработке</strong> — не открывайте бота для заказа, он ещё не обслуживает гостей.
-            Пока заказ только <strong>у стойки</strong> на 2 и 11 этажах. Вопросы и пожелания — <a href="#feedback">на почту</a>.
-          </p>
-        </div>
-        <p class="lead order-lead-muted">
-          Ниже — как будет устроено, когда бот запустим (ориентир: ближайшие недели).
+        <p class="lead">
+          Закажите или сделайте предзаказ через бота — бариста получит заявку на этаже. Можно по-прежнему подойти <strong>к стойке</strong> на 2 и 11 этажах.
         </p>
       </div>
       <div class="order-layout">
         <div class="order-copy">
-          <p class="order-steps-label">Как будет работать</p>
-          <ol class="order-steps order-steps--preview">
-            <li>Откроете бота <strong>@coffeefriends_orders_bot</strong> (ссылка или QR).</li>
-            <li>Выберете <strong>«Заказ сейчас»</strong> или <strong>«Предзаказ на дату»</strong>, этаж <strong>2</strong> / <strong>11</strong>, имя для стойки.</li>
+          <p class="order-steps-label">Как это работает</p>
+          <ol class="order-steps">
+            <li>Откройте бота <strong>@coffeefriends_orders_bot</strong> (ссылка или QR).</li>
+            <li>Выберите <strong>«Заказ сейчас»</strong> или <strong>«Предзаказ на дату»</strong>, этаж <strong>2</strong> / <strong>11</strong>, имя для стойки.</li>
             <li>Для напитков — объём <strong>250 / 350 / 450 мл</strong> (как в прайсе). Для сэндвичей — начинка, количество, гриль. Для горячего — название блюда текстом.</li>
-            <li>Проверите корзину и <strong>стоимость заказа</strong> → <strong>«Отправить бариста»</strong>.</li>
+            <li>Проверьте корзину и <strong>стоимость заказа</strong> → <strong>«Отправить бариста»</strong>.</li>
             <li>Бариста ответит по готовности — вам придёт уведомление в боте. <strong>Оплата у стойки.</strong></li>
           </ol>
           <div class="order-cta">
-            <button type="button" class="btn btn-primary btn-disabled" disabled aria-disabled="true">
-              Бот в разработке
-            </button>
+            <a class="btn btn-primary" href="https://t.me/coffeefriends_orders_bot" target="_blank" rel="noopener noreferrer">
+              Открыть бота
+            </a>
             <a class="btn btn-ghost" href="#route">Как пройти к стойке</a>
             <a class="btn btn-ghost" href="#drinks">Смотреть меню на сайте</a>
           </div>
-          <p class="order-note">Для обратной связи без заказа — <a href="#feedback">почта</a>.</p>
+          <p class="order-note">Для обратной связи без заказа — <a href="#feedback">почта</a> или команда <strong>/feedback</strong> в боте.</p>
         </div>
-        <aside class="surface-card order-qr-card order-qr-card--soon" aria-label="QR-код бота — появится после запуска">
-          <span class="order-soon-badge">Скоро</span>
-          <img
-            src="assets/images/order/bot-qr.png"
-            width="400"
-            height="400"
-            alt=""
-            loading="lazy"
-            decoding="async"
-            aria-hidden="true"
-          >
-          <p class="order-qr-caption">QR и бот появятся здесь, когда сервис запустим</p>
-          <p class="order-qr-link"><span class="order-qr-link-muted">t.me/coffeefriends_orders_bot</span></p>
+        <aside class="surface-card order-qr-card" aria-label="QR-код бота заказов">
+          <a href="https://t.me/coffeefriends_orders_bot" target="_blank" rel="noopener noreferrer">
+            <img
+              src="assets/images/order/bot-qr.png"
+              width="400"
+              height="400"
+              alt="QR-код: открыть @coffeefriends_orders_bot в Telegram"
+              loading="lazy"
+              decoding="async"
+            >
+          </a>
+          <p class="order-qr-caption">Наведите камеру — откроется бот</p>
+          <p class="order-qr-link">
+            <a href="https://t.me/coffeefriends_orders_bot" target="_blank" rel="noopener noreferrer">t.me/coffeefriends_orders_bot</a>
+          </p>
         </aside>
       </div>
     </section>
