@@ -124,9 +124,9 @@ strong {
   position: relative;
   overflow: hidden;
   padding-top: max(16px, env(safe-area-inset-top, 0px));
-  padding-right: max(var(--layout-gutter), env(safe-area-inset-right, 0px));
+  padding-right: 0;
   padding-bottom: clamp(44px, 6vw, 64px);
-  padding-left: max(var(--layout-gutter), env(safe-area-inset-left, 0px));
+  padding-left: 0;
   background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg) 55%);
   border-bottom: 1px solid var(--border);
 }
@@ -137,13 +137,22 @@ strong {
   z-index: 1;
 }
 
+/* Та же колонка, что у .section: content-max + gutter — логотип = «График работы» */
+.nav,
+.hero-inner {
+  max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: max(var(--layout-gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--layout-gutter), env(safe-area-inset-right, 0px));
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  max-width: var(--content-max);
-  margin: 0 auto 28px;
+  margin-bottom: 28px;
   flex-wrap: wrap;
 }
 
@@ -201,8 +210,6 @@ strong {
 }
 
 .hero-inner {
-  max-width: var(--content-max);
-  margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(240px, 320px);
   gap: clamp(18px, 2.2vw, 34px);
@@ -1064,13 +1071,16 @@ strong {
 
 .leaf {
   position: absolute;
-  top: -40px;
-  width: var(--s, 18px);
-  height: calc(var(--s, 18px) * 1.4);
+  top: -48px;
+  display: block;
+  width: var(--s, 22px);
+  height: calc(var(--s, 22px) * 1.4);
   margin: 0;
   border-radius: 2% 82% 12% 82%;
   opacity: 0;
-  box-shadow: inset -2px -3px 0 rgba(0, 0, 0, 0.14);
+  box-shadow:
+    inset -2px -3px 0 rgba(0, 0, 0, 0.18),
+    0 0 10px rgba(232, 163, 23, 0.25);
   transform: translate3d(0, 0, 0) rotate(0deg);
   will-change: transform, opacity;
   animation: leaf-drop var(--t, 7s) linear var(--d, 0s) infinite;
@@ -1083,13 +1093,13 @@ strong {
   top: 10%;
   width: 1.5px;
   height: 74%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.25);
   border-radius: 1px;
   transform: translateX(-50%) rotate(3deg);
 }
 
 .leaf--1 { background: linear-gradient(145deg, #e8a317, #b45309); }
-.leaf--2 { background: linear-gradient(145deg, #c00000, #8a0000); }
+.leaf--2 { background: linear-gradient(145deg, #e07070, #8a0000); }
 .leaf--3 { background: linear-gradient(145deg, #d4a017, #92650a); }
 .leaf--4 { background: linear-gradient(145deg, #f07316, #c2410c); }
 
@@ -1098,21 +1108,19 @@ strong {
     opacity: 0;
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
-  8% {
-    opacity: 0.95;
+  6% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.85;
   }
   100% {
-    opacity: 0.35;
-    transform: translate3d(var(--x, 24px), var(--fall, 900px), 0) rotate(var(--r, 360deg));
+    opacity: 0.2;
+    transform: translate3d(var(--x, 24px), var(--fall, 640px), 0) rotate(var(--r, 360deg));
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .leaf {
-    animation: none;
-    opacity: 0;
-  }
-}
+/* Не гасим листопад при prefers-reduced-motion — на Windows/Edge часто включён reduce */
 
 /* Poems */
 .poems-toolbar {

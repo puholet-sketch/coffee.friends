@@ -744,38 +744,40 @@ function whenGallerySectionReady(done) {
 function leafHtml(count = 12) {
   return Array.from({ length: count }, (_, i) => {
     const tone = (i % 4) + 1;
-    const delay = ((i * 0.55) % 4.8).toFixed(2);
-    const duration = (6.5 + (i % 4) * 1.2).toFixed(1);
-    const left = (6 + (i * 7.5) % 88).toFixed(1);
-    const drift = ((i % 2 === 0 ? 1 : -1) * (20 + (i % 4) * 14)).toFixed(0);
-    const size = (15 + (i % 4) * 4).toFixed(0);
-    const spin = (i % 2 === 0 ? 1 : -1) * (300 + i * 35);
+    const delay = ((i * 0.45) % 5.2).toFixed(2);
+    const duration = (5.8 + (i % 5) * 1.1).toFixed(1);
+    const left = (4 + (i * 7.1) % 92).toFixed(1);
+    const drift = ((i % 2 === 0 ? 1 : -1) * (18 + (i % 5) * 12)).toFixed(0);
+    const size = (18 + (i % 5) * 5).toFixed(0);
+    const spin = (i % 2 === 0 ? 1 : -1) * (280 + i * 32);
     return `<i class="leaf leaf--${tone}" style="left:${left}%;--d:${delay}s;--t:${duration}s;--x:${drift}px;--s:${size}px;--r:${spin}deg" aria-hidden="true"></i>`;
   }).join("");
 }
 
-function syncLeafFallDistance(host) {
-  if (!host) return;
-  const h = Math.max(host.clientHeight || 0, 420);
-  host.style.setProperty("--fall", `${h + 80}px`);
+function syncLeafFallDistance(fx) {
+  if (!fx) return;
+  const host = fx.closest(".hero, .autumn-promo") || fx;
+  const h = Math.max(host.clientHeight || 0, fx.clientHeight || 0, 360);
+  fx.style.setProperty("--fall", `${h + 60}px`);
 }
 
 function initAutumnLeaves() {
   const hero = document.getElementById("heroLeaves");
   const promo = document.getElementById("promoLeaves");
-  const promoCard = document.getElementById("autumnPromo");
   if (hero) {
-    hero.innerHTML = leafHtml(10);
-    syncLeafFallDistance(hero.closest(".hero") || hero);
+    hero.innerHTML = leafHtml(16);
+    syncLeafFallDistance(hero);
   }
   if (promo) {
-    promo.innerHTML = leafHtml(14);
-    syncLeafFallDistance(promoCard || promo);
+    promo.innerHTML = leafHtml(18);
+    syncLeafFallDistance(promo);
   }
-  window.addEventListener("resize", () => {
-    if (hero) syncLeafFallDistance(hero.closest(".hero") || hero);
-    if (promo) syncLeafFallDistance(promoCard || promo);
-  });
+  const syncAll = () => {
+    if (hero) syncLeafFallDistance(hero);
+    if (promo) syncLeafFallDistance(promo);
+  };
+  window.addEventListener("resize", syncAll);
+  requestAnimationFrame(syncAll);
 }
 
 const PROMO_PCT_CYCLE_MS = 900;
